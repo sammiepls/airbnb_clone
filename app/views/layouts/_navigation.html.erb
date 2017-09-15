@@ -12,8 +12,14 @@
       <li class="navbar-item"><a class="nav-link" href="#">Active</a></li>
 
         <% if signed_in? %>
-        <li class="navbar-item">
-          <%= link_to 'User profile', edit_user_path(current_user), class: "nav-link" %>
+        <li class="navbar-item dropdown">
+          <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          User Profile
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to 'View user profile', user_path(current_user), class: "dropdown-item" %>
+            <%= link_to 'Edit user profile', edit_user_path(current_user), class: "dropdown-item" %>
+          </div>
         </li>
         <li class="navbar-item">
           <%= link_to 'Sign out', sign_out_path, class: "nav-link", method: :delete %>
