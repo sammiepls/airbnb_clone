@@ -1,6 +1,38 @@
-.sign-in {
-  background: url("hero.jpg");
+.sign-in,.sign-up {
+  background: linear-gradient(to right, rgba(240, 194, 123, .5), rgba(75, 18, 72, .5)),url("hero.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
+
+  h1 {
+    color: #fff;
+    font-size: 4rem;
+  }
+
+  h2 {
+    color: #fff;
+  }
+
+  .text-field, .password-field {
+    text-align: center;
+
+    input {
+    width: 50%;
+    border-radius: 10px;
+    border: 0;
+    padding: 1rem;
+    margin: .3rem;
+    background: rgba(255,255,255,0.7);
+    }
+  }
+  .other-links {
+    text-align: center;
+    margin-top: 2rem;
+    a {
+      color: #fff;
+      font-weight:700;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+  }
 }

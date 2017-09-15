@@ -1,10 +1,13 @@
 <div id="clearance" class="sign-in d-flex align-items-center">
   <div class="container">
     <div class="row">
-      <h1>Book unique homes and experience a city like a local.</h1>
-      <h2><%= t(".title") %></h2>
-
-  <%= render partial: '/sessions/form' %>
+      <div class="col-12">
+        <h1 class='text-center'>Book unique homes and experience a city like a local.</h1>
+        <div class='form-container mt-4'>
+          <h2 class='text-center'><%= t(".title") %></h2>
+          <%= render partial: '/sessions/form' %>
+        </div>
+    </div>
     </div>
   </div>
 </div>

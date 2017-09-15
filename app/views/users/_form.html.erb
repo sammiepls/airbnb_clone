@@ -1,9 +1,13 @@
 <div class="text-field">
-  <%= form.label :email %>
-  <%= form.text_field :email, type: 'email' %>
+  <%= form.text_field :email, type: 'email', placeholder: "Email address" %>
+</div>
+<div class="text-field">
+  <%= form.text_field :first_name, type: 'first_name', placeholder: "First Name" %>
+</div>
+<div class="text-field">
+  <%= form.text_field :last_name, type: 'last_name', placeholder: "Last Name" %>
 </div>
 
 <div class="password-field">
-  <%= form.label :password %>
-  <%= form.password_field :password %>
+  <%= form.password_field :password, placeholder:"Password" %>
 </div>

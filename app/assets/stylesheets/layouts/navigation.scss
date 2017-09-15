@@ -1,6 +1,12 @@
 .navbar {
-    background: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.8);
     @extend %bg-cover;
+    a {
+      color: $airbnb;
+      &:hover {
+        color: darken( $airbnb, 30% );
+      }
+    }
 }
 .logo {
   width: 10rem;
