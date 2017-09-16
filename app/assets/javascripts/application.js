@@ -18,7 +18,7 @@
 //= require_tree .
 
 
-$( document ).ready(function() {
+$(document).on('turbolinks:load', function() {
     // Adding padding to body to offset the fixed navbar
     $("body").css("padding-top", $(".navbar").outerHeight());
 });

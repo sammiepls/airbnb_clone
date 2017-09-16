@@ -8,9 +8,11 @@
               <%= form_for @user do |form| %>
                 <%= render partial: '/users/form', object: form %>
 
-                <div class="submit-field text-center">
+                <div class="submit-field text-center my-3">
                   <%= form.submit class: 'btn btn-primary' %>
                 </div>
+
+                <%= render 'users/error_messages' %>
 
                 <div class="other-links">
                   <%= link_to t(".sign_in"), sign_in_path %>
