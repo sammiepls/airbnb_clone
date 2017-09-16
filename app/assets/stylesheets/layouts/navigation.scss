@@ -1,0 +1,28 @@
+.navbar {
+    background: $translucent-white;
+    @extend %bg-cover;
+    a {
+      color: $airbnb;
+      &:hover {
+        color: darken( $airbnb, 30% );
+      }
+    }
+    .dropdown-menu {
+    top: 128%;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background: $translucent-white;
+
+    .dropdown-item {
+      padding: .5rem 1.8rem;
+      &:hover,&:focus {
+        background: rgba($airbnb, .9);
+        color:#fff;
+      }
+    }
+  }
+}
+.logo {
+  width: 10rem;
+}

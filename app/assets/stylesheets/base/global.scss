@@ -1,0 +1,20 @@
+body {
+  font-family: 'Raleway',sans-serif;
+  background: $offwhite;
+}
+.btn-primary {
+  background: $airbnb;
+  border: 0;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  &:hover,&:focus {
+    background: darken( $airbnb, 30% );
+  }
+}
+#flash {
+  text-align: center;
+  background: rgba($airbnb, .3);
+}
+#flash_failure {
+  padding: 1rem;
+}

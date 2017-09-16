@@ -1,15 +1,25 @@
-<div id="clearance" class="sign-up">
-  <h2><%= t(".title") %></h2>
-i am here
-  <%= form_for @user do |form| %>
-    <%= render partial: '/users/form', object: form %>
+<main id="clearance" class="sign-up d-flex align-items-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class='text-center'>Book unique homes and experience a city like a local.</h1>
+            <div class='form-container mt-4'>
+              <h2 class="text-center">Sign up now</h2>
+              <%= form_for @user do |form| %>
+                <%= render partial: '/users/form', object: form %>
 
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
+                <div class="submit-field text-center my-3">
+                  <%= form.submit class: 'btn btn-primary' %>
+                </div>
 
-    <div class="other-links">
-      <%= link_to t(".sign_in"), sign_in_path %>
-    </div>
-  <% end %>
-</div>
+                <%= render 'users/error_messages' %>
+
+                <div class="other-links">
+                  <%= link_to t(".sign_in"), sign_in_path %>
+                </div>
+              <% end %>
+            </div>
+        </div>
+      </div>
+  </div>
+</main>

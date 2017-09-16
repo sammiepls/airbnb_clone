@@ -1,0 +1,37 @@
+<main class="container">
+  <div class="row my-5">
+    <div class="col-4">
+      Your user pic should go here.
+    </div>
+    <div class="col-8">
+      <h1>Edit user profile</h1>
+      <div class="edit-user">
+
+        <%= form_for @user do |form| %>
+        <div class="row">
+          <div class="text-field col-6">
+            <%= form.text_field :first_name, type: 'first_name', placeholder: "First Name" %>
+          </div>
+          <div class="text-field col-6">
+            <%= form.text_field :last_name, type: 'last_name', placeholder: "Last Name" %>
+          </div>
+          <div class="text-field col-6">
+            <%= form.text_field :email, type: 'email', placeholder: "Email address" %>
+          </div>
+          <div class="password-field col-6">
+            <%= form.password_field :password, placeholder:"Password" %>
+          </div>
+        </div>
+
+        <div class="submit-field my-2">
+          <%= form.submit class: 'btn btn-primary' %>
+        </div>
+
+        <%= render 'users/error_messages' %>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</main>
