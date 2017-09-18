@@ -1,4 +1,7 @@
-%bg-cover {
+%bg_cover {
   background-size: cover;
   background-position: center;
+}
+@mixin hero-background($url) {
+  background: linear-gradient(to right, rgba(240, 194, 123, .5), rgba(75, 18, 72, .5)),url("#{$url}");
 }

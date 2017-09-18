@@ -1,0 +1,31 @@
+<section class="listing-carousel container d-flex align-items-center justify-content-center">
+  <div class="row">
+    <div class="col-12">
+      <h1 class='text-center'><%= @listing.name %></h1>
+      <% if current_user.id == @listing.user_id %>
+        <%= link_to 'Edit', edit_listing_path(@listing) %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<main class="container">
+  <div class="row">
+    <div class="col-8">
+      <h2>Description</h2>
+      <%= @listing.description %>
+    </div>
+    <div class="col-4">
+      <h2>More info</h2>
+      <dl>
+        <dt>Number of Guests</dt>
+        <dd><%= @listing.guest_pax %></dd>
+        <dt>Number of Bathrooms</dt>
+        <dd><%= @listing.bathroom_count %></dd>
+        <dt>Number of Bedrooms</dt>
+        <dd><%= @listing.bedroom_count %></dd>
+        <dt>Price per Night</dt>
+        <dd><%= @listing.price_per_night %></dd>
+    </div>
+  </div>
+</main>

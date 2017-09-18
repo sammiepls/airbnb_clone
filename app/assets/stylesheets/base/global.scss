@@ -2,6 +2,12 @@ body {
   font-family: 'Raleway',sans-serif;
   background: $offwhite;
 }
+a {
+  color: $airbnb;
+  &:hover,&:focus {
+    color: darken( $airbnb, 30% );
+  }
+}
 .btn-primary {
   background: $airbnb;
   border: 0;
@@ -11,10 +17,20 @@ body {
     background: darken( $airbnb, 30% );
   }
 }
+
+.btn-secondary {
+    color: #fff;
+    background: transparent;
+    border-color: #fff;
+    margin-left: 20px;
+}
 #flash {
   text-align: center;
-  background: rgba($airbnb, .3);
 }
-#flash_failure {
+#flash_succes {
+  background: rgba(180, 210, 137, .3);
+}
+#flash_failure,#flash_notice {
+  background: rgba($airbnb, .3);
   padding: 1rem;
 }
