@@ -10,8 +10,10 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :password, length: { minimum:7, too_short: "Password must be at least 7 characters long" }
 
-    # FB
+  def user_listings
+  end
 
+  # FB
   def self.create_with_auth_and_hash(authentication, auth_hash)
     user = self.create!(
     # If you dont know how to call it, use byebug and auto_hash to see how to call it

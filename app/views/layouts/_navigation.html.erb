@@ -16,7 +16,9 @@
           Listings
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <%= link_to 'View listings', listings_path, class: "dropdown-item" %>
+            <%= link_to 'View all listings', listings_path, class: "dropdown-item" %>
+            <%= link_to 'Create new listing', new_listing_path, class: "dropdown-item" %>
+            <%= link_to 'View your listings', user_listings_path(current_user), class: "dropdown-item" %>
             <%= link_to 'Edit listings', listings_path, class: "dropdown-item" %>
           </div>
         </li>

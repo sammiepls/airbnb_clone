@@ -18,16 +18,13 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(listing_params)
-
-    respond_to do |format|
       if @listing.save
-        format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
-        format.json { render :show, status: :created, location: @listing }
+        flash[:success] = "You have successfully created a listing"
+        render template: "listings/show"
       else
         format.html { render :new }
         format.json { render json: @listing.errors, status: :unprocessable_entity }
       end
-    end
   end
 
 
@@ -60,6 +57,6 @@ class ListingsController < ApplicationController
 
     def listing_params
 
-      params.require(:listing).permit(:name,:description,:address,:guest_pax,:bedroom_count,:bathroom_count,:price_per_night,:term)
+      params.require(:listing).permit(:user_id,:name,:description,:address,:guest_pax,:bedroom_count,:bathroom_count,:price_per_night,:term)
     end
 end

@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root "listings#index"
   resources :listings
-  
-
+  get "/users/:id/listings" => "listings#user_listings", as: "user_listings"
   resources :users
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "sessions", only: [:create]

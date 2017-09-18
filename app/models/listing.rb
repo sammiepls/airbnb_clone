@@ -2,7 +2,7 @@ class Listing < ApplicationRecord
   # Associations
   belongs_to :user
   # Validation
-  NON_VALIDATABLE_ATTRS = ["id", "created_at", "updated_at", "user_id"]
+  NON_VALIDATABLE_ATTRS = ["id", "created_at", "updated_at", "user"]
   #^or any other attribute that does not need validation
   VALIDATABLE_ATTRS = Listing.attribute_names.reject{|attr| NON_VALIDATABLE_ATTRS.include?(attr)}
   validates_presence_of VALIDATABLE_ATTRS
@@ -16,4 +16,6 @@ class Listing < ApplicationRecord
       all
     end
   end
+
+
 end
