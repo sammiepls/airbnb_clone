@@ -1,6 +1,8 @@
 .navbar {
     background: $translucent-white;
-    @extend %bg-cover;
+    box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.15);
+    background-size: cover;
+    background-position: center;
     a {
       color: $airbnb;
       &:hover {

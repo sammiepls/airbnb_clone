@@ -1,0 +1,17 @@
+<main class='container'>
+  <div class="row my-5">
+    <div class="col-12">
+      <h1 class='text-center'>Edit your listing</h1>
+      <%= form_for @listing do |form| %>
+      <%= render partial: '/listings/form', object: form %>
+
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <div class="submit-field text-center my-3">
+        <%= form.submit class: 'btn btn-primary' %>
+      </div>
+
+    <% end %>
+
+    </div>
+  </div>
+</main>

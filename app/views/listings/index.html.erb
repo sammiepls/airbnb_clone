@@ -1,0 +1,48 @@
+<section class="listing-hero d-flex align-items-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+      <h1 class='text-center'>Where to?</h1>
+        <%= form_tag(listings_path, method: :get, class:'form-inline') do %>
+          <%= text_field_tag :term, params[:term] %>
+          <%= button_tag(name:nil,type: "submit", class: "btn-icon") do %>
+            <i class="fa fa-search fa-3x"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="container">
+  <div class="row my-5">
+    <div class="col-12">
+      <h1>Listings</h1>
+    </div>
+
+    <% @listings.each do |listing| %>
+    <div class='col-4'>
+      <div class="card my-3">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-block p-3">
+          <h4 class="card-title"><%= listing.name %></h4>
+          <p class="card-text"><%= listing.description %></p>
+          <%= link_to 'View listing', listing, class:"btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+
+</div>
+</main>
+
+
+
+<!-- <tr>
+  <td><%#= listing.name %></td>
+  <%#= link_to 'New Listing', new_listing_path %>
+
+  <td><%#= link_to 'Edit', edit_listing_path(listing) %></td>
+  <td><%#= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr> -->
