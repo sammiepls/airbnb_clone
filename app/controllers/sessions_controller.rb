@@ -9,7 +9,6 @@ class SessionsController < Clearance::SessionsController
 
     sign_in(@user) do |status|
       if status.success?
-         byebug
         flash[:success] = "You have successfully logged in"
         redirect_back_or url_after_create
       else

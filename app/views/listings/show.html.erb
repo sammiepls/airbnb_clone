@@ -1,5 +1,5 @@
 <section class="listing-carousel container d-flex align-items-center justify-content-center">
-  <div class="row">
+  <div class="row my-5">
     <div class="col-12">
       <h1 class='text-center'><%= @listing.name %></h1>
       <% if current_user.id == @listing.user_id %>
@@ -16,7 +16,10 @@
       <%= @listing.description %>
     </div>
     <div class="col-4">
-      <h2>More info</h2>
+      <small>Hosted by:</small>
+      <%= link_to edit_user_path(@listing.user) do %>
+         <h2><%= @listing.user.full_name %></h2>
+      <% end %>
       <dl>
         <dt>Number of Guests</dt>
         <dd><%= @listing.guest_pax %></dd>
@@ -25,7 +28,7 @@
         <dt>Number of Bedrooms</dt>
         <dd><%= @listing.bedroom_count %></dd>
         <dt>Price per Night</dt>
-        <dd><%= @listing.price_per_night %></dd>
+        <dd>RM<%= number_with_precision(@listing.price_per_night, precision: 2) %></dd>
     </div>
   </div>
 </main>

@@ -40,6 +40,10 @@ class ListingsController < ApplicationController
     end
   end
 
+  def user_listings
+    @user = User.find(params[:id])
+    @listings = Listing.where(user_id:params[:id])
+  end
 
   def destroy
     @listing.destroy

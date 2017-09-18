@@ -26,11 +26,12 @@ a {
 }
 #flash {
   text-align: center;
-}
-#flash_succes {
-  background: rgba(180, 210, 137, .3);
-}
-#flash_failure,#flash_notice {
-  background: rgba($airbnb, .3);
-  padding: 1rem;
+  #flash_success {
+    background: rgba(180, 210, 137, .3);
+    padding: 1rem;
+  }
+  #flash_failure,#flash_notice {
+    background: rgba($airbnb, .3);
+    padding: 1rem;
+  }
 }

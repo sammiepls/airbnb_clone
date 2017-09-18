@@ -4,12 +4,16 @@
       Your user pic should go here.
     </div>
     <div class="col-8">
-      <h1>Hi, I'm <%= current_user.first_name %></h1>
+      <h1>Hi, I'm <%= @user.full_name %></h1>
 
-      <h3>Joined <%= current_user.created_at.to_date %></h3>
-      <%= link_to edit_user_path(current_user) do %>
-         <i class='fa fa-pencil'></i> Edit Profile
+      <h3>Joined <%= @user.created_at.to_date %></h3>
+      <% if current_user == @user.id %>
+        <%= link_to user_path(@user) do %>
+           <i class='fa fa-pencil'></i> Edit Profile
+        <% end %>
       <% end %>
+
+      <%= link_to "Check out my listings", user_listings_path(@user) %>
     </div>
   </div>
 </main>
