@@ -16,5 +16,5 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-# Ignore application configuration
+# Ignore application configuration (this is from Figaro)
 /config/application.yml

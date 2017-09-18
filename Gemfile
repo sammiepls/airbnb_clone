@@ -60,3 +60,6 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 
 # Figaro
 gem "figaro"
+
+# Omniauth for Facebook authentication
+gem 'omniauth-facebook'
