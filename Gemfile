@@ -63,3 +63,6 @@ gem "figaro"
 
 # Omniauth for Facebook authentication
 gem 'omniauth-facebook'
+
+# Tags
+gem 'acts-as-taggable-on', '~> 4.0'
