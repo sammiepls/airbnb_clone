@@ -1,0 +1,32 @@
+<main class="container">
+  <div class="row my-5">
+    <div class="col-12">
+      <h1>Listings</h1>
+    </div>
+
+    <% @listings.each do |listing| %>
+    <div class='col-4'>
+      <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title"><%= listing.name %></h4>
+          <p class="card-text"><%= listing.description %></p>
+          <%= link_to 'View listing', listing, class:"btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+
+</div>
+</main>
+
+
+
+<!-- <tr>
+  <td><%#= listing.name %></td>
+  <%#= link_to 'New Listing', new_listing_path %>
+
+  <td><%#= link_to 'Edit', edit_listing_path(listing) %></td>
+  <td><%#= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr> -->
