@@ -3,7 +3,8 @@
     <div class="col-12">
       <h1 class='text-center'><%= @listing.name %></h1>
       <% if current_user.id == @listing.user_id %>
-        <%= link_to 'Edit', edit_listing_path(@listing) %>
+        <%= link_to 'Edit listing', edit_listing_path(@listing) %>
+        <%= link_to 'Delete listing', listing_path(@listing), method: :delete %>
       <% end %>
     </div>
   </div>
@@ -17,7 +18,7 @@
     </div>
     <div class="col-4">
       <small>Hosted by:</small>
-      <%= link_to edit_user_path(@listing.user) do %>
+      <%= link_to user_path(@listing.user) do %>
          <h2><%= @listing.user.full_name %></h2>
       <% end %>
       <dl>

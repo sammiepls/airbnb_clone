@@ -19,25 +19,23 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new(listing_params)
       if @listing.save
-        flash[:success] = "You have successfully created a listing"
+        flash.now[:success] = "You have successfully created a listing"
         render template: "listings/show"
       else
-        format.html { render :new }
-        format.json { render json: @listing.errors, status: :unprocessable_entity }
+        flash.now[:failure] = "There was an error creating your listing"
+        render template: "listings/new"
       end
   end
 
 
   def update
-    respond_to do |format|
       if @listing.update(listing_params)
-        format.html { redirect_to @listing, notice: 'Listing was successfully updated.' }
-        format.json { render :show, status: :ok, location: @listing }
+        flash.now[:success] = "You have successfully created a listing"
+        render template: "listings/show"
       else
-        format.html { render :edit }
-        format.json { render json: @listing.errors, status: :unprocessable_entity }
+        flash.now[:failure] = "There was an error updating your listing"
+        render template: "listings/edit"
       end
-    end
   end
 
   def user_listings
@@ -47,10 +45,9 @@ class ListingsController < ApplicationController
 
   def destroy
     @listing.destroy
-    respond_to do |format|
-      format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash.now[:success] = 'Listing was successfully destroyed'
+    user_listings
+    render template: "listings/index"
   end
 
   private
