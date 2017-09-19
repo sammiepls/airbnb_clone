@@ -1,6 +1,11 @@
 class Listing < ApplicationRecord
+
   # Associations
   belongs_to :user
+
+  # Taggable
+  acts_as_taggable_on :tags
+
   # Validation
   NON_VALIDATABLE_ATTRS = ["id", "created_at", "updated_at", "user"]
   #^or any other attribute that does not need validation

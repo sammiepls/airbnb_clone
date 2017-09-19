@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root "listings#index"
+  get 'tags/:tag', to: 'listings#index', as: :tag
+
   resources :listings
   get "/users/:id/listings" => "listings#user_listings", as: "user_listings"
   resources :users

@@ -3,7 +3,13 @@ class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
 
   def index
-    @listings = Listing.search(params[:term])
+    if params[:tag]
+      @listings = Listing.tagged_with(params[:tag])
+    elsif params[:term]
+      @listings = Listing.search(params[:term])
+    else
+      @listings = Listing.all
+    end
   end
 
   def show
@@ -17,6 +23,7 @@ class ListingsController < ApplicationController
   end
 
   def create
+    byebug
     @listing = Listing.new(listing_params)
       if @listing.save
         flash.now[:success] = "You have successfully created a listing"
@@ -58,6 +65,6 @@ class ListingsController < ApplicationController
 
     def listing_params
 
-      params.require(:listing).permit(:user_id,:name,:description,:address,:guest_pax,:bedroom_count,:bathroom_count,:price_per_night,:term)
+      params.require(:listing).permit(:user_id,:name,:description,:address,:guest_pax,:bedroom_count,:bathroom_count,:price_per_night,:term,:tag_list)
     end
 end

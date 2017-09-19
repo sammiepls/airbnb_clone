@@ -2,10 +2,7 @@ class User < ApplicationRecord
   # Associations
   has_many :authentications, dependent: :destroy
   has_many :listings, dependent: :destroy
-  # Taggable
-  acts_as_taggable # Alias for acts_as_taggable_on :tags
- acts_as_taggable_on :skills, :interests
-
+  
   include Clearance::User
   # Validation
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
