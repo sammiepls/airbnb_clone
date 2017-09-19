@@ -23,6 +23,11 @@
     <%= form.label :bathroom_count %>
     <%= form.number_field :bathroom_count, min: 1, max: 20, step: :any, placeholder: 1 %>
   </div>
+  <div class="upload-field col-4">
+    <%= form.label :photos %>
+    <%= form.file_field :photos, multiple: true %>
+  </div>
+
   <div class="text-field col-12">
     <%= form.label :price_per_night %>
     RM <%= form.text_field :price_per_night, type: 'text', placeholder: "RM" %>

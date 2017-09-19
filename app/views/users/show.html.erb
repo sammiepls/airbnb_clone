@@ -2,7 +2,7 @@
   <div class="row my-5">
     <div class="col-4">
       <% if @user.avatar? %>
-        <%= image_tag(@user.avatar_url, class: "user-avatar rounded-circle")  %>
+        <%= image_tag(@user.avatar.thumb.url, class: "user-avatar rounded-circle")  %>
       <% else %>
         <%= image_tag('anonymous.jpg', class: "user-avatar rounded-circle")  %>
       <% end %>

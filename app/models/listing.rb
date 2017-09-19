@@ -1,5 +1,6 @@
 class Listing < ApplicationRecord
 
+  mount_uploaders :photos, PhotoUploader
   # Associations
   belongs_to :user
 
@@ -7,7 +8,7 @@ class Listing < ApplicationRecord
   acts_as_taggable_on :tags
 
   # Validation
-  NON_VALIDATABLE_ATTRS = ["id", "created_at", "updated_at", "user"]
+  NON_VALIDATABLE_ATTRS = ["id", "created_at", "updated_at", "user", "photos", "verification"]
   #^or any other attribute that does not need validation
   VALIDATABLE_ATTRS = Listing.attribute_names.reject{|attr| NON_VALIDATABLE_ATTRS.include?(attr)}
   validates_presence_of VALIDATABLE_ATTRS

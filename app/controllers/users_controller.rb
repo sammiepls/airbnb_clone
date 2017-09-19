@@ -17,6 +17,7 @@ class UsersController < Clearance::UsersController
   end
 
   def update
+    params[:user].delete(:password) if params[:user][:password].blank?
     @user = User.find(current_user.id)
     if @user.update_attributes(user_params)
       render template:"users/show"

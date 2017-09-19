@@ -75,4 +75,4 @@ gem 'will_paginate', '~> 3.1.0'
 
 # Upload Image
 gem 'carrierwave', '~> 1.0'
-#gem "rmagick"
+gem "mini_magick"

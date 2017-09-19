@@ -2,8 +2,6 @@ class ListingsController < ApplicationController
   before_action :require_login
   before_action :set_listing, only: [:show, :edit, :update, :destroy, :verify]
 
-
-
   def index
     if params[:tag]
       @listings = Listing.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 18)
@@ -61,6 +59,7 @@ class ListingsController < ApplicationController
         flash.now[:success] = "You have successfully created a listing"
         render template: "listings/show"
       else
+        byebug
         flash.now[:failure] = "There was an error updating your listing"
         render template: "listings/edit"
       end
@@ -86,6 +85,6 @@ class ListingsController < ApplicationController
 
     def listing_params
 
-      params.require(:listing).permit(:user_id,:name,:description,:address,:guest_pax,:bedroom_count,:bathroom_count,:price_per_night,:term,:tag_list)
+      params.require(:listing).permit(:user_id,:name,:description,:address,:guest_pax,:bedroom_count,:bathroom_count,:price_per_night,:term,:tag_list,photos: [])
     end
 end
