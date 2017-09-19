@@ -2,8 +2,12 @@ class User < ApplicationRecord
   # Associations
   has_many :authentications, dependent: :destroy
   has_many :listings, dependent: :destroy
-  
+
   include Clearance::User
+
+  # Authorization
+  enum access_level: [:user, :moderator, :super_admin]
+
   # Validation
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   validates :first_name,:last_name, :email, presence: true
