@@ -6,9 +6,9 @@ class ListingsController < ApplicationController
 
   def index
     if params[:tag]
-      @listings = Listing.tagged_with(params[:tag])
+      @listings = Listing.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 18)
     elsif params[:term]
-      @listings = Listing.search(params[:term])
+      @listings = Listing.search(params[:term]).paginate(:page => params[:page], :per_page => 18)
     elsif current_user.user?
       @listings = Listing.where(verification:true).paginate(:page => params[:page], :per_page => 18)
     else
@@ -24,13 +24,21 @@ class ListingsController < ApplicationController
   end
 
   def verify
-    if current_user.user?
+    if allowed?(action: "verify", user: current_user)
+      @listing.update(verification:true)
+      render template: "/listings/show"
+    else
       flash[:failure] = "Sorry. You are not allowed to perform this action."
       redirect_to :back
-   else
-     @listing.update(verification:true)
-     render template: "/listings/show"
-   end
+    end
+
+  #   if current_user.user?
+  #     flash[:failure] = "Sorry. You are not allowed to perform this action."
+  #     redirect_to :back
+  #  else
+  #    @listing.update(verification:true)
+  #    render template: "/listings/show"
+  #  end
   end
 
   def edit

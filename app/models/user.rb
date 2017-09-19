@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   validates :first_name,:last_name, :email, presence: true
   validates :email, uniqueness: true
-  validates :password, length: { minimum:7, too_short: "Password must be at least 7 characters long" }
+  validates :password, length: { minimum:7, too_short: "Password must be at least 7 characters long" }, on: :create
 
   # FB
   def self.create_with_auth_and_hash(authentication, auth_hash)
