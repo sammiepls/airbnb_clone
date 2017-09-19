@@ -18,7 +18,13 @@ class ListingsController < ApplicationController
   end
 
   def new
+    # authorization code
+     if current_user.user?
+       flash[:failure] = "Sorry. You are not allowed to perform this action."
+       redirect_to :back
+    else
     @listing = Listing.new
+    end
   end
 
   def edit
