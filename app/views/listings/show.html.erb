@@ -6,6 +6,9 @@
         <%= link_to 'Edit listing', edit_listing_path(@listing) %>
         <%= link_to 'Delete listing', listing_path(@listing), method: :delete %>
       <% end %>
+      <% if !current_user.user? && @listing.verification == false %>
+        <%= link_to 'Verify listing', verify_listing_path(@listing), method: :post %>
+      <% end %>
     </div>
   </div>
 </section>

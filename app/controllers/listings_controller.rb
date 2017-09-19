@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_action :require_login
-  before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :set_listing, only: [:show, :edit, :update, :destroy, :verify]
 
 
 
@@ -9,6 +9,8 @@ class ListingsController < ApplicationController
       @listings = Listing.tagged_with(params[:tag])
     elsif params[:term]
       @listings = Listing.search(params[:term])
+    elsif current_user.user?
+      @listings = Listing.where(verification:true).paginate(:page => params[:page], :per_page => 18)
     else
       @listings = Listing.paginate(:page => params[:page], :per_page => 18)
     end
@@ -18,13 +20,17 @@ class ListingsController < ApplicationController
   end
 
   def new
-    # authorization code
-     if current_user.user?
-       flash[:failure] = "Sorry. You are not allowed to perform this action."
-       redirect_to :back
-    else
     @listing = Listing.new
-    end
+  end
+
+  def verify
+    if current_user.user?
+      flash[:failure] = "Sorry. You are not allowed to perform this action."
+      redirect_to :back
+   else
+     @listing.update(verification:true)
+     render template: "/listings/show"
+   end
   end
 
   def edit
