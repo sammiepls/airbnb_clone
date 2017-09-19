@@ -59,6 +59,10 @@ GEM
       sass (>= 3.4.19)
     builder (3.2.3)
     byebug (9.1.0)
+    carrierwave (1.1.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     clearance (1.16.0)
       bcrypt
       email_validator (~> 1.4)
@@ -208,6 +212,7 @@ DEPENDENCIES
   acts-as-taggable-on (~> 4.0)
   bootstrap (~> 4.0.0.alpha6)
   byebug
+  carrierwave (~> 1.0)
   clearance
   coffee-rails (~> 4.2)
   faker!

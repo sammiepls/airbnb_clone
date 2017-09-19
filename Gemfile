@@ -72,3 +72,6 @@ gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
 
 # Pagination
 gem 'will_paginate', '~> 3.1.0'
+
+# Upload Image
+gem 'carrierwave', '~> 1.0'
