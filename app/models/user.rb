@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # Associations
   has_many :authentications, dependent: :destroy
   has_many :listings, dependent: :destroy
+  mount_uploader :avatar, AvatarUploader
 
   include Clearance::User
 
