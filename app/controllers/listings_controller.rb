@@ -2,13 +2,15 @@ class ListingsController < ApplicationController
   before_action :require_login
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
 
+
+
   def index
     if params[:tag]
       @listings = Listing.tagged_with(params[:tag])
     elsif params[:term]
       @listings = Listing.search(params[:term])
     else
-      @listings = Listing.all
+      @listings = Listing.paginate(:page => params[:page], :per_page => 18)
     end
   end
 
@@ -23,7 +25,6 @@ class ListingsController < ApplicationController
   end
 
   def create
-    byebug
     @listing = Listing.new(listing_params)
       if @listing.save
         flash.now[:success] = "You have successfully created a listing"

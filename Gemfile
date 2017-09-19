@@ -66,3 +66,9 @@ gem 'omniauth-facebook'
 
 # Tags
 gem 'acts-as-taggable-on', '~> 4.0'
+
+# Faker
+gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
+
+# Pagination
+gem 'will_paginate', '~> 3.1.0'
