@@ -56,16 +56,13 @@
 <main class="container">
   <div class="row">
     <div class="col-8">
-      <h2>Description</h2>
-      <%= @listing.description %><br>
-      <h3>Tags</h3>
-      <p> <%= raw @listing.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
-    </div>
-    <div class="col-4">
       <small>Hosted by:</small>
       <%= link_to user_path(@listing.user) do %>
          <h2><%= @listing.user.full_name %></h2>
       <% end %>
+
+      <h2>Description</h2>
+      <%= @listing.description %>
       <dl>
         <dt>Number of Guests</dt>
         <dd><%= @listing.guest_pax %></dd>
@@ -75,6 +72,20 @@
         <dd><%= @listing.bedroom_count %></dd>
         <dt>Price per Night</dt>
         <dd>RM<%= number_with_precision(@listing.price_per_night, precision: 2) %></dd>
+      </dl>
+      <h3>Tags</h3>
+      <p> <%= raw @listing.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+    </div>
+    <div class="col-4">
+      <%= form_for [current_user, @reservation] do |form| %>
+      <%= render partial: '/reservations/form', object: form %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.hidden_field :listing_id, value: @listing.id %>
+
+      <div class="submit-field text-center my-3">
+        <%= form.submit class: 'btn btn-primary' %>
+      </div>
+      <% end %>
     </div>
   </div>
 </main>

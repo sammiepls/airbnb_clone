@@ -4,19 +4,18 @@ class ListingsController < ApplicationController
 
   def index
     if params[:tag]
-      @listings = Listing.tagged_with(params[:tag]).order('updated_at DESC').paginate(:page => params[:page], :per_page => 18)
+      @listings = Listing.tagged_with(params[:tag]).order('updated_at DESC').paginate(:page => params[:page], :per_page => 12)
     elsif params[:term]
-      @listings = Listing.search(params[:term]).order('updated_at DESC').paginate(:page => params[:page], :per_page => 18)
+      @listings = Listing.search(params[:term]).order('updated_at DESC').paginate(:page => params[:page], :per_page => 12)
     elsif current_user.user?
-      @listings = Listing.where(verification:true).order('updated_at DESC').paginate(:page => params[:page], :per_page => 18)
+      @listings = Listing.where(verification:true).order('updated_at DESC').paginate(:page => params[:page], :per_page => 12)
     else
-      @listings = Listing.order('updated_at DESC').paginate(:page => params[:page], :per_page => 18)
+      @listings = Listing.order('updated_at DESC').paginate(:page => params[:page], :per_page => 12)
     end
   end
 
-
-
   def show
+    @reservation = Reservation.new
   end
 
   def new
@@ -25,6 +24,7 @@ class ListingsController < ApplicationController
 
   def verify
     if allowed?(action: "verify", user: current_user)
+      flash[:success] = "You have verified this listing."
       @listing.update(verification:true)
       render template: "/listings/show"
     else
@@ -80,13 +80,11 @@ class ListingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_listing
       @listing = Listing.find(params[:id])
     end
 
     def listing_params
-
       params.require(:listing).permit(:user_id,:name,:description,:address,:guest_pax,:bedroom_count,:bathroom_count,:price_per_night,:term,:tag_list,photos: [])
     end
 end
