@@ -76,3 +76,6 @@ gem 'will_paginate', '~> 3.1.0'
 # Upload Image
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
+
+# Amazon Web Service
+gem 'fog'
