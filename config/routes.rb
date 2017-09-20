@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root "listings#index"
   get 'tags/:tag', to: 'listings#index', as: :tag
-
   resources :listings
   get "/users/:id/listings" => "listings#user_listings", as: "user_listings"
   post "/listings/:id" =>"listings#verify", as: "verify_listing"
@@ -13,6 +12,7 @@ Rails.application.routes.draw do
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
+    resources :reservations, except: [:new]
   end
 
   get "/sign_in" => "sessions#new", as: "sign_in"
