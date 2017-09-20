@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
   before_action :require_login
   before_action :set_listing, only: [:show, :edit, :update, :destroy, :verify]
+  before_action :set_reservation, only: [:show,:update,:verify]
 
   def index
     if params[:tag]
@@ -15,7 +16,6 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @reservation = Reservation.new
   end
 
   def new
@@ -74,14 +74,21 @@ class ListingsController < ApplicationController
 
   def destroy
     @listing.destroy
-    flash.now[:success] = 'Listing was successfully destroyed'
-    user_listings
-    render template: "listings/index"
+    flash[:success] = 'Listing was successfully destroyed'
+    redirect_to listings_path
   end
 
   private
     def set_listing
       @listing = Listing.find(params[:id])
+    end
+
+    # def set_listings
+    #   @listings = Listing.all
+    # end
+
+    def set_reservation
+      @reservation = Reservation.new
     end
 
     def listing_params
