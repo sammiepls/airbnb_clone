@@ -80,15 +80,19 @@
       <p> <%= raw @listing.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
     </div>
     <div class="col-4">
-      <%= form_for [current_user, @reservation] do |form| %>
-      <%= render partial: '/reservations/form', object: form %>
-      <%= form.hidden_field :user_id, value: current_user.id %>
-      <%= form.hidden_field :listing_id, value: @listing.id %>
+      <div class='side-box'>
+        <h2 class='mb-3'>Like what you see?</h2>
+        <p class='mb-3'>Make a reservation now!</p>
+        <%= form_for [current_user, @reservation] do |form| %>
+        <%= render partial: '/reservations/form', object: form %>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+        <%= form.hidden_field :listing_id, value: @listing.id %>
 
-      <div class="submit-field text-center my-3">
-        <%= form.submit class: 'btn btn-primary' %>
+        <div class="submit-field text-center my-3">
+          <%= form.submit class: 'btn btn-primary' %>
+        </div>
+        <% end %>
       </div>
-      <% end %>
     </div>
   </div>
 </main>

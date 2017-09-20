@@ -1,13 +1,8 @@
-<%= form.label :guest_pax %>
-<%= form.number_field :guest_pax, min: 1, max: @listing.guest_pax, step: :any, placeholder: 0  %>
+<h5><%= form.label :guest_pax %></h5>
+<%= form.number_field :guest_pax, min: 1, max: @listing.guest_pax, step: :any, placeholder: 0,class:'form-input' %>
 
-<h5>Check in</h5>
-<!-- <input id="check_in" /> -->
-<div class='gj-datepicker gj-datepicker-bootstrap gj-unselectable input-group'>
-  <%= form.date_field :check_in, type:"date",role:"input",class:"form-control datepicker",id:"check_in", min: Date.today, max:Date.today.next_year %>
-</div>
+<h5><%= form.label :check_in %></h5>
+  <%= form.date_field :check_in, type:"date",role:"input",class:"form-input datepicker",id:"check_in", min: Date.today, max:Date.today.next_year %>
 
-<h5>Check out</h5>
-<div class='gj-datepicker gj-datepicker-bootstrap gj-unselectable input-group'>
-  <%= form.date_field :check_out, id:"check_out",type:"date",role:"input",class:"form-control datepicker", max:Date.today.next_year %>
-</div>
+<h5><%= form.label :check_out %></h5>
+  <%= form.date_field :check_out, id:"check_out",type:"date",role:"input",class:"form-input datepicker", max:Date.today.next_year %>

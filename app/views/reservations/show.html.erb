@@ -5,7 +5,7 @@
     <%= image_tag 'placeholder.png', class: "listing-photo d-block img-fluid"  %>
   <% end %>
   <div class="reservation-hero-title text-center">
-    <h5>Look forward to your stay</h5>
+    <h5>Look forward to your stay at</h5>
     <h1><%= @reservation.listing.name %></h1>
   </div>
 </section>
@@ -25,14 +25,17 @@
           <p><%= @reservation.check_out.strftime("%d %B %Y") %> </p>
         </div>
         <div class='col-12'>
-          <h3 class='mb-4'>Listing Description</h3>
+          <h3 class='mb-5'>Listing Description</h3>
           <p><%= @reservation.listing.description %>
         </div>
       </div>
     </div>
     <div class="col-4">
       <div class="side-box">
-        <h2>
+        <h2>Reservation Options</h2>
+          <%= link_to 'Edit listing', edit_user_reservation_path(current_user,@reservation) %>
+          <%= link_to 'Delete listing', user_reservation_path(current_user,@reservation), method: :delete %>
+
       </div>
     </div>
   </div>
