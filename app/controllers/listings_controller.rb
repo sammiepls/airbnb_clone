@@ -83,10 +83,6 @@ class ListingsController < ApplicationController
       @listing = Listing.find(params[:id])
     end
 
-    # def set_listings
-    #   @listings = Listing.all
-    # end
-
     def set_reservation
       @reservation = Reservation.new
     end

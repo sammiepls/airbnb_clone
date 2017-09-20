@@ -16,6 +16,10 @@ a {
   &:hover,&:focus {
     background: darken( $airbnb, 30% );
   }
+  a {
+    color: #fff;
+    text-decoration: none!important;
+  }
 }
 
 .btn-secondary {

@@ -3,20 +3,23 @@
   <% if @listing.photos.count > 1 %>
     <% for x in 0..@listing.photos.count %>
       <% break if x == (@listing.photos.count) %>
-      <% if x == 0 %>
-        <li data-target="#carouselExampleIndicators" data-slide-to="<%= x %>" class="active"></li>
-      <% else %>
-          <li data-target="#carouselExampleIndicators" data-slide-to="<%= x %>"></li>
-      <% end %>
+        <% if x == 0 %>
+          <li data-target="#carouselExampleIndicators" data-slide-to="<%= x %>" class="active"></li>
+        <% else %>
+            <li data-target="#carouselExampleIndicators" data-slide-to="<%= x %>"></li>
+        <% end %>
       <% x += 1 %>
       <% end %>
   <% end %>
+
   </ol>
 
 <div class="carousel-inner" role="listbox">
   <div class="carousel-item active">
     <% if @listing.photos.first %>
       <%= image_tag @listing.photos.first, class: "listing-photo d-block img-fluid"  %>
+    <% else %>
+    <%= image_tag 'placeholder.png', class: "listing-photo d-block img-fluid"  %>
     <% end %>
   </div>
   <% if @listing.photos.count > 1 %>

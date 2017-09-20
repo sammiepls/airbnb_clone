@@ -1,1 +1,39 @@
-Your reservation has been made
+<section class="reservation-hero">
+  <% if @reservation.listing.photos.first %>
+  <%= image_tag @reservation.listing.photos.first, class: "d-block img-fluid"  %>
+  <% else %>
+    <%= image_tag 'placeholder.png', class: "listing-photo d-block img-fluid"  %>
+  <% end %>
+  <div class="reservation-hero-title text-center">
+    <h5>Look forward to your stay</h5>
+    <h1><%= @reservation.listing.name %></h1>
+  </div>
+</section>
+<main class="container">
+  <div class="row my-5">
+    <div class="col-8">
+      <div class="row">
+        <div class='col-12'>
+          <h1 class='mb-4'>Reservation Details</h1>
+        </div>
+        <div class='col-6'>
+          <h3>Check-in Date</h3>
+          <p><%= @reservation.check_in.strftime("%d %B %Y") %> </p>
+        </div>
+        <div class='col-6'>
+          <h3>Check-out Date</h3>
+          <p><%= @reservation.check_out.strftime("%d %B %Y") %> </p>
+        </div>
+        <div class='col-12'>
+          <h3 class='mb-4'>Listing Description</h3>
+          <p><%= @reservation.listing.description %>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="side-box">
+        <h2>
+      </div>
+    </div>
+  </div>
+</main>

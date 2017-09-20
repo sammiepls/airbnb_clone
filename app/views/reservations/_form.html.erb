@@ -3,8 +3,11 @@
 
 <h5>Check in</h5>
 <!-- <input id="check_in" /> -->
-<%= form.date_field :check_in, id:"check_in" %>
+<div class='gj-datepicker gj-datepicker-bootstrap gj-unselectable input-group'>
+  <%= form.date_field :check_in, type:"date",role:"input",class:"form-control datepicker",id:"check_in", min: Date.today, max:Date.today.next_year %>
+</div>
 
 <h5>Check out</h5>
-<!-- <input id="check_out"/> -->
-<%= form.date_field :check_out, id:"check_out" %>
+<div class='gj-datepicker gj-datepicker-bootstrap gj-unselectable input-group'>
+  <%= form.date_field :check_out, id:"check_out",type:"date",role:"input",class:"form-control datepicker", max:Date.today.next_year %>
+</div>

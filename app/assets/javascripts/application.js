@@ -22,13 +22,14 @@ $(document).on('turbolinks:load', function() {
     // Adding padding to body to offset the fixed navbar
     $("body").css("padding-top", $(".navbar").outerHeight());
 
-    $('#check_in').datepicker({
-        uiLibrary: 'bootstrap4',
-        iconsLibrary: 'fontawesome'
+    $('#check_in').on('change', function(date){
+      var newDate = date.target.value.split('-').join('/');
+      var minDateObject = new Date(newDate);
+      var newMinDateObject = minDateObject.setDate(minDateObject.getDate() + 1);
+      var minDate =  new Date(newMinDateObject).toISOString().split('T')[0];
+
+
+      $('#check_out')[0].min = minDate;
     });
 
-    $('#check_out').datepicker({
-        uiLibrary: 'bootstrap4',
-        iconsLibrary: 'fontawesome'
-    });
 });
