@@ -21,4 +21,14 @@
 $(document).on('turbolinks:load', function() {
     // Adding padding to body to offset the fixed navbar
     $("body").css("padding-top", $(".navbar").outerHeight());
+
+    $('#check_in').datepicker({
+        uiLibrary: 'bootstrap4',
+        iconsLibrary: 'fontawesome'
+    });
+
+    $('#check_out').datepicker({
+        uiLibrary: 'bootstrap4',
+        iconsLibrary: 'fontawesome'
+    });
 });

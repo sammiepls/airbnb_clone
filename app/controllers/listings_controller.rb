@@ -58,7 +58,7 @@ class ListingsController < ApplicationController
 
   def update
       if @listing.update(listing_params)
-        flash.now[:success] = "You have successfully created a listing"
+        flash.now[:success] = "You have successfully updated your listing"
         render template: "listings/show"
       else
         byebug

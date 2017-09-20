@@ -1,7 +1,10 @@
 <%= form.label :guest_pax %>
 <%= form.number_field :guest_pax, min: 1, max: @listing.guest_pax, step: :any, placeholder: 0  %>
 
-<% form.label :check_in %>
+<h5>Check in</h5>
+<!-- <input id="check_in" /> -->
 <%= form.date_field :check_in, id:"check_in" %>
 
-    
+<h5>Check out</h5>
+<!-- <input id="check_out"/> -->
+<%= form.date_field :check_out, id:"check_out" %>
