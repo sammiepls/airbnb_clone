@@ -78,4 +78,4 @@ gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
 
 # Amazon Web Service
-gem 'fog'
+gem 'fog-aws'
