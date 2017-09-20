@@ -1,9 +1,8 @@
 class Listing < ApplicationRecord
-
   mount_uploaders :photos, PhotoUploader
   # Associations
   belongs_to :user
-
+  has_many :reservations, dependent: :destroy
   # Taggable
   acts_as_taggable_on :tags
 
