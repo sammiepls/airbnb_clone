@@ -63,3 +63,19 @@ gem "figaro"
 
 # Omniauth for Facebook authentication
 gem 'omniauth-facebook'
+
+# Tags
+gem 'acts-as-taggable-on', '~> 4.0'
+
+# Faker
+gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
+
+# Pagination
+gem 'will_paginate', '~> 3.1.0'
+
+# Upload Image
+gem 'carrierwave', '~> 1.0'
+gem "mini_magick"
+
+# Amazon Web Service
+gem "fog-aws"

@@ -1,7 +1,7 @@
 <main class="container">
   <div class="row my-5">
     <div class="col-4">
-      Your user pic should go here.
+      <%= image_tag(@user.avatar_url, class: "user-avatar rounded-circle") if @user.avatar? %>
     </div>
     <div class="col-8">
       <h1>Edit user profile</h1>
@@ -20,6 +20,10 @@
           </div>
           <div class="password-field col-6">
             <%= form.password_field :password, placeholder:"Password" %>
+          </div>
+          <div class="upload-field my-3 col-6">
+            <p>Upload your profile picture</p>
+            <%= form.file_field :avatar, multiple: false, class:"upload" %>
           </div>
         </div>
 

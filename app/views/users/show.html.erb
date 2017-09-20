@@ -1,14 +1,18 @@
 <main class="container">
   <div class="row my-5">
     <div class="col-4">
-      Your user pic should go here.
+      <% if @user.avatar? %>
+        <%= image_tag(@user.avatar.thumb.url, class: "user-avatar rounded-circle")  %>
+      <% else %>
+        <%= image_tag('anonymous.jpg', class: "user-avatar rounded-circle")  %>
+      <% end %>
     </div>
     <div class="col-8">
       <h1>Hi, I'm <%= @user.full_name %></h1>
 
       <h3>Joined <%= @user.created_at.to_date %></h3>
-      <% if current_user == @user.id %>
-        <%= link_to user_path(@user) do %>
+      <% if current_user.id == @user.id %>
+        <%= link_to edit_user_path(@user) do %>
            <i class='fa fa-pencil'></i> Edit Profile
         <% end %>
       <% end %>

@@ -17,6 +17,7 @@ class UsersController < Clearance::UsersController
   end
 
   def update
+    params[:user].delete(:password) if params[:user][:password].blank?
     @user = User.find(current_user.id)
     if @user.update_attributes(user_params)
       render template:"users/show"
@@ -32,7 +33,7 @@ class UsersController < Clearance::UsersController
 
   private
   def user_params
-    params.require(:user).permit(:first_name,:last_name,:email,:password,:created_at,:updated_at)
+    params.require(:user).permit(:first_name,:last_name,:email,:password,:created_at,:updated_at,:avatar)
   end
 
 end
