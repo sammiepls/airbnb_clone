@@ -4,15 +4,17 @@ class ListingsController < ApplicationController
 
   def index
     if params[:tag]
-      @listings = Listing.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 18)
+      @listings = Listing.tagged_with(params[:tag]).order('updated_at DESC').paginate(:page => params[:page], :per_page => 18)
     elsif params[:term]
-      @listings = Listing.search(params[:term]).paginate(:page => params[:page], :per_page => 18)
+      @listings = Listing.search(params[:term]).order('updated_at DESC').paginate(:page => params[:page], :per_page => 18)
     elsif current_user.user?
-      @listings = Listing.where(verification:true).paginate(:page => params[:page], :per_page => 18)
+      @listings = Listing.where(verification:true).order('updated_at DESC').paginate(:page => params[:page], :per_page => 18)
     else
-      @listings = Listing.paginate(:page => params[:page], :per_page => 18)
+      @listings = Listing.order('updated_at DESC').paginate(:page => params[:page], :per_page => 18)
     end
   end
+
+
 
   def show
   end

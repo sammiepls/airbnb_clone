@@ -79,3 +79,4 @@ gem "mini_magick"
 
 # Amazon Web Service
 gem 'fog-aws'
+
