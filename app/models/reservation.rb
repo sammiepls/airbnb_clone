@@ -8,4 +8,8 @@ class Reservation < ApplicationRecord
   validates_each :check_in do |record, attr, value|
       record.errors.add(attr, 'Invalid date') if value < Time.now.to_date
     end
+  validates_each :check_out do |record, attr, value|
+      record.errors.add(attr, 'Invalid date') if value > self.check_out
+    end
+  validates :check_in, :check_out, uniqueness: {message: "Date already booked" }
 end

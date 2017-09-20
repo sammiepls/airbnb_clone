@@ -22,18 +22,23 @@
 
     <div class='card-deck'>
     <% @listings.each do |listing| %>
-    <div class='col-4'>
-      <div class="card my-3">
+    <div class='col-4 my-4'>
+      <div class="card">
         <% if listing.photos.first %>
           <%= image_tag listing.photos.first.thumb, class: "card-img-top"  %>
         <% else %>
           <%= image_tag 'placeholder.png', class: "card-img-top"  %>
         <% end %>
         <div class="card-block p-3">
-          <h4 class="card-title"><%= listing.name %></h4>
-          <p class="card-text"><%= listing.description %></p>
-          <%= raw listing.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
-          <%= link_to 'View listing', listing, class:"btn btn-primary" %>
+          <div class='card-info'>
+            <h4 class="card-title"><%= listing.name %></h4>
+            <p class="card-text"><%= listing.description %></p>
+            <h6>Tags</h6>
+            <%= raw listing.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+          </div>
+          <div class="card-btn my-1">
+            <%= link_to 'View listing', listing, class:"btn btn-primary" %>
+          </div>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@
   <div class="row my-5">
     <div class="col-12">
       <h1>Your reservations</h1>
+      <% if @reservations.count != 0 %>
       <% @reservations.each do |reservation| %>
         <section class='reservation-wrapper my-5'>
           <div class='reservation-photo-wrapper'>
@@ -34,6 +35,9 @@
           </div>
           
         </section>
+      <% end %>
+      <% else %>
+        <p> You have not made any reservations. </p>
       <% end %>
     </div>
   </row>

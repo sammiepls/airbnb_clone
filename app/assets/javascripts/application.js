@@ -27,8 +27,6 @@ $(document).on('turbolinks:load', function() {
       var minDateObject = new Date(newDate);
       var newMinDateObject = minDateObject.setDate(minDateObject.getDate() + 1);
       var minDate =  new Date(newMinDateObject).toISOString().split('T')[0];
-
-
       $('#check_out')[0].min = minDate;
     });
 
