@@ -81,3 +81,11 @@ gem "mini_magick"
 
 # Amazon Web Service
 gem 'fog-aws'
+
+# Flatpickr
+source 'https://rails-assets.org' do
+  gem 'rails-assets-flatpickr-calendar'
+end
+
+# Gon
+gem 'gon'
