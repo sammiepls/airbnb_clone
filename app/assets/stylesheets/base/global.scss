@@ -20,6 +20,9 @@ a {
     color: #fff;
     text-decoration: none!important;
   }
+  .disabled, &:disabled {
+    background: desaturate( $airbnb, 80% );
+  }
 }
 
 .btn-secondary {

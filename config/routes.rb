@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   root "listings#index"
+
+  # Payments
+  resources :payments, only: [:new]
+  post '/payments/checkout'
+
   get 'tags/:tag', to: 'listings#index', as: :tag
   resources :listings
   get "/users/:id/listings" => "listings#user_listings", as: "user_listings"
