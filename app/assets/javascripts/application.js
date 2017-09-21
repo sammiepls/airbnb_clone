@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
+//= require flatpickr-calendar
 //= require_tree .
 
 
@@ -22,12 +23,23 @@ $(document).on('turbolinks:load', function() {
     // Adding padding to body to offset the fixed navbar
     $("body").css("padding-top", $(".navbar").innerHeight());
 
-    $('#check_in').on('change', function(date){
-      var newDate = date.target.value.split('-').join('/');
-      var minDateObject = new Date(newDate);
-      var newMinDateObject = minDateObject.setDate(minDateObject.getDate() + 1);
-      var minDate =  new Date(newMinDateObject).toISOString().split('T')[0];
-      $('#check_out')[0].min = minDate;
+    // $('#check_in').on('change', function(date){
+    //   var newDate = date.target.value.split('-').join('/');
+    //   var minDateObject = new Date(newDate);
+    //   var newMinDateObject = minDateObject.setDate(minDateObject.getDate() + 1);
+    //   var minDate =  new Date(newMinDateObject).toISOString().split('T')[0];
+    //   $('#check_out')[0].min = minDate;
+    // });
+
+    flatpickr('#check_in', {
+      minDate: "today",
+      disable: gon.reservations,
+      onChange: function(dateObj, dateStr) {
+         flatpickr('#check_out', {
+           minDate: new Date(dateObj).fp_incr(1)
+        });
+        }
     });
+
 
 });

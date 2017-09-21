@@ -16,6 +16,10 @@ class ListingsController < ApplicationController
   end
 
   def show
+    reservations = Reservation.where(listing_id: params[:id]).map do |x|
+      {from: x.check_in, to: x.check_out.prev_day}
+    end
+    gon.reservations = reservations
   end
 
   def new
@@ -61,7 +65,6 @@ class ListingsController < ApplicationController
         flash.now[:success] = "You have successfully updated your listing"
         render template: "listings/show"
       else
-        byebug
         flash.now[:failure] = "There was an error updating your listing"
         render template: "listings/edit"
       end
