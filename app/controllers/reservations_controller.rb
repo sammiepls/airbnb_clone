@@ -12,6 +12,7 @@ class ReservationsController < ApplicationController
         render template: "reservations/show"
       else
         flash.now[:failure] = "There was an error creating your reservation"
+        @listing = Listing.find(params[:reservation][:listing_id])
         render template: "listings/show"
       end
   end

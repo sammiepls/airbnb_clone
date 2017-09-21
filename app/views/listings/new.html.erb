@@ -2,6 +2,8 @@
   <div class="row my-5">
     <div class="col-12">
       <h1 class='text-center'>Create a new listing</h1>
+      <%= render 'listings/error_messages' %>
+
       <%= form_for @listing do |form| %>
       <%= render partial: '/listings/form', object: form %>
 
@@ -13,5 +15,6 @@
     <% end %>
 
     </div>
+
   </div>
 </main>

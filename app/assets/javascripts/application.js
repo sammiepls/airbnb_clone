@@ -20,7 +20,7 @@
 
 $(document).on('turbolinks:load', function() {
     // Adding padding to body to offset the fixed navbar
-    $("body").css("padding-top", $(".navbar").outerHeight());
+    $("body").css("padding-top", $(".navbar").innerHeight());
 
     $('#check_in').on('change', function(date){
       var newDate = date.target.value.split('-').join('/');

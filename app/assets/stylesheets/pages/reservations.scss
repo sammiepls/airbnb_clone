@@ -17,7 +17,7 @@
   width: 100%;
   border-radius: 20px 20px 0 0;
 }
-.reservation-photo-wrapper::before, .reservation-hero::before {
+.reservation-photo-wrapper::before{
     content: '';
     position: absolute;
     background: rgba(52, 58, 64, 0.54);
@@ -25,6 +25,13 @@
     height: 100%;
     border-radius: 20px 20px 0 0;
 }
+.reservation-hero::before {
+    content: '';
+    position: absolute;
+    background: rgba(52, 58, 64, 0.54);
+    width: 100%;
+    height: 100%;
+  }
 .reservation-title-wrapper, .reservation-hero-title {
     position: absolute;
     top: 50%;

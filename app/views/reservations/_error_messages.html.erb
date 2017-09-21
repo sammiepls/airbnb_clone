@@ -1,0 +1,9 @@
+<% if @reservation.errors.any? %>
+  <div class="error-explanation">
+    <ul class='alert alert-danger py-3 px-5'>
+    <% @reservation.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

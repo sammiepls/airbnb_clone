@@ -12,7 +12,8 @@ class Listing < ApplicationRecord
   VALIDATABLE_ATTRS = Listing.attribute_names.reject{|attr| NON_VALIDATABLE_ATTRS.include?(attr)}
   validates_presence_of VALIDATABLE_ATTRS
   #validating the presence of everything else
-  validates :price_per_night, format: { with: /\A\d+(?:\.\d{0,2})?\z/ }, numericality: true
+  validates :price_per_night, format: { with: /\A\d+(?:\.\d{0,2})?\z/, message:"has other characters besides numbers and decimal points." }, numericality: true
+  validates :guest_pax, :bedroom_count, :bathroom_count, numericality: true
 
   def self.search(term)
     if term

@@ -1,5 +1,5 @@
 <h5><%= form.label :guest_pax %></h5>
-<%= form.number_field :guest_pax, min: 1, max: @listing.guest_pax, step: :any, placeholder: 0,class:'form-input' %>
+<%= form.number_field :guest_pax, min: 1, max: @listing.guest_pax, step: :any, placeholder: "Max guests: #{@listing.guest_pax}",class:'form-input' %>
 
 <h5><%= form.label :check_in %></h5>
   <%= form.date_field :check_in, type:"date",role:"input",class:"form-input datepicker",id:"check_in", min: Date.today, max:Date.today.next_year %>

@@ -25,6 +25,10 @@
           <p><%= @reservation.check_out.strftime("%d %B %Y") %> </p>
         </div>
         <div class='col-12'>
+          <h3 class='mt-5'>Total Price</h3>
+          <p><%= @reservation.total_price %>
+        </div>
+        <div class='col-12'>
           <h3 class='mt-5'>Listing Description</h3>
           <p><%= @reservation.listing.description %>
         </div>

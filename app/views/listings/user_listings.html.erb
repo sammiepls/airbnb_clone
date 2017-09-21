@@ -3,26 +3,30 @@
     <div class="col-12">
       <h1><%=@user.full_name %>'s Listings</h1>
     </div>
-
-    <% @listings.each do |listing| %>
-    <div class='col-4'>
-      <div class="card my-3">
-        <% if listing.photos.first %>
-          <%= image_tag listing.photos.first, class: "card-img-top"  %>
-        <% else %>
-          <%= image_tag 'placeholder.png', class: "card-img-top"  %>
-        <% end %>
-        <div class="card-block p-3">
-          <h4 class="card-title"><%= listing.name %></h4>
-          <p class="card-text"><%= listing.description %></p>
-          <%= link_to 'View listing', listing, class:"btn btn-primary" %>
+    
+    <% if !@listings.empty? %>
+      <% @listings.each do |listing| %>
+      <div class='col-4'>
+        <div class="card my-3">
+          <% if listing.photos.first %>
+            <%= image_tag listing.photos.first, class: "card-img-top"  %>
+          <% else %>
+            <%= image_tag 'placeholder.png', class: "card-img-top"  %>
+          <% end %>
+          <div class="card-block p-3">
+            <h4 class="card-title"><%= listing.name %></h4>
+            <p class="card-text"><%= listing.description %></p>
+            <%= link_to 'View listing', listing, class:"btn btn-primary" %>
+          </div>
         </div>
       </div>
-    </div>
+      <% end %>
+      <% else %>
+      <div class='col-12'>
+        <p>You don't have any listings. To become a host, click <%= link_to "here", new_listing_path %></p>
+      </div>
     <% end %>
-
-
-</div>
+  </div>
 </main>
 
 

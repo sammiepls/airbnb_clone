@@ -33,8 +33,10 @@
           <div class='card-info'>
             <h4 class="card-title"><%= listing.name %></h4>
             <p class="card-text"><%= listing.description %></p>
+            <% if listing.tags.count >= 1 %>
             <h6>Tags</h6>
             <%= raw listing.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+            <% end %>
           </div>
           <div class="card-btn my-1">
             <%= link_to 'View listing', listing, class:"btn btn-primary" %>
