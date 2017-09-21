@@ -1,8 +1,10 @@
 @import "bootstrap";
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,700');
+@import url('https://unpkg.com/flatpickr/dist/flatpickr.min.css');
 @import "utils/variables";
 @import "utils/mixins";
 @import "base/global";
 @import "layouts/navigation";
 @import "pages/users";
 @import "pages/listings";
+@import "pages/reservations";

@@ -11,6 +11,10 @@
     <ul class='navbar-nav ml-auto'>
 
         <% if signed_in? %>
+        <li class="navbar-item">
+          <%= link_to 'Your reservations', user_reservations_path(current_user), class: "nav-link" %>
+        </li>
+
         <li class="navbar-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Listings

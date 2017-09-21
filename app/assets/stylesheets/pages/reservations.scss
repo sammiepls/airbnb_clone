@@ -1,0 +1,53 @@
+.reservation-wrapper {
+  box-shadow: $shadow;
+  border-radius: 20px;
+}
+.reservation-photo {
+    max-height: 120px;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+}
+.reservation-photo-wrapper, .reservation-hero {
+  position: relative;
+}
+.reservation-hero img {
+  max-height: 30vh;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 20px 20px 0 0;
+}
+.reservation-photo-wrapper::before{
+    content: '';
+    position: absolute;
+    background: rgba(52, 58, 64, 0.54);
+    width: 100%;
+    height: 100%;
+    border-radius: 20px 20px 0 0;
+}
+.reservation-hero::before {
+    content: '';
+    position: absolute;
+    background: rgba(52, 58, 64, 0.54);
+    width: 100%;
+    height: 100%;
+  }
+.reservation-title-wrapper, .reservation-hero-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
+.reservation-details-wrapper {
+    background: #fff;
+    border-radius: 0 0 20px 20px;
+    .row {
+      align-items: center;
+    }
+}
+.reservation-hero-title {
+  h1 {
+    font-size: 3.5rem;
+  }
+}

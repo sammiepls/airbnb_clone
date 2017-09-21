@@ -1,0 +1,12 @@
+<% if @listing.errors.any? %>
+  <div class="error-explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@listing.errors.count, "error") %>.
+    </div>
+    <ul class='alert alert-danger py-3 px-5'>
+    <% @listing.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,40 +1,40 @@
 <div class='row'>
   <div class="text-field col-12">
     <%= form.label :name %>
-    <%= form.text_field :name, type: 'text', placeholder: "Listing Name" %>
+    <%= form.text_field :name, type: 'text', placeholder: "Listing Name",class:"form-input" %>
   </div>
   <div class="text-area col-12">
     <%= form.label :description %>
-    <%= form.text_area :description, type: 'text', placeholder: "Description" %>
+    <%= form.text_area :description, type: 'text', placeholder: "Description",class:"form-input" %>
   </div>
   <div class="text-field col-12">
     <%= form.label :address %>
-    <%= form.text_field :address, type: 'text', placeholder: "Address" %>
+    <%= form.text_field :address, type: 'text', placeholder: "Address",class:"form-input" %>
   </div>
   <div class="number-field col-4">
     <%= form.label :guest_pax %>
-    <%= form.number_field :guest_pax, min: 1, max: 20, step: :any, placeholder: 1  %>
+    <%= form.number_field :guest_pax, min: 1, max: 20, step: :any, placeholder: 1,class:"form-input"  %>
   </div>
   <div class="number-field col-4">
     <%= form.label :bedroom_count %>
-    <%= form.number_field :bedroom_count, min: 1, max: 20, step: :any, placeholder: 1 %>
+    <%= form.number_field :bedroom_count, min: 1, max: 20, step: :any, placeholder: 1,class:"form-input" %>
   </div>
   <div class="number-field col-4">
     <%= form.label :bathroom_count %>
-    <%= form.number_field :bathroom_count, min: 1, max: 20, step: :any, placeholder: 1 %>
+    <%= form.number_field :bathroom_count, min: 1, max: 20, step: :any, placeholder: 1,class:"form-input" %>
   </div>
-  <div class="upload-field col-4">
+  <div class="upload-field col-12">
     <%= form.label :photos %>
-    <%= form.file_field :photos, multiple: true %>
+    <%= form.file_field :photos, multiple: true,class:"form-input" %>
   </div>
 
   <div class="text-field col-12">
     <%= form.label :price_per_night %>
-    RM <%= form.text_field :price_per_night, type: 'text', placeholder: "RM" %>
+   <%= form.text_field :price_per_night, type: 'text', placeholder: "RM",class:"form-input" %>
   </div>
   <div class="text-field col-12">
     <%= form.label :tag_list, "Tags (separated by commas)" %>
-    <%= form.text_field :tag_list, value: form.object.tag_list.to_s %>
+    <%= form.text_field :tag_list, value: form.object.tag_list.to_s,class:"form-input" %>
 
   </div>
 </div>
