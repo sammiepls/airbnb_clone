@@ -5,12 +5,30 @@ class Reservation < ApplicationRecord
   # Validation
   validates :guest_pax,:check_in, :check_out, presence: true
   validates :guest_pax, numericality: true
-  # validates_each :check_in do |record, attr, value|
-  #     record.errors.add(attr, 'Invalid date') if value < Time.now.to_date
-  #   end
   validate :check_max_guests
   validate :check_overlapping_dates
+  validate :check_date_eligibility
+  validate :check_out_after_check_in
 
+  def check_date_eligibility
+    if check_in != nil
+       if check_in < Date.today
+         errors.add(:check_in, "date can't be in the past")
+       end
+    elsif check_out != nil
+      if check_out < Date.today
+        errors.add(:check_out, "date can't be in the past")
+      end
+    end
+  end
+
+  def check_out_after_check_in
+    if check_out != nil && check_in != nil
+      if check_out < check_in
+        errors.add(:check_out, "date can't be before check in date")
+      end
+    end
+  end
 
   def check_max_guests
     max_guests = listing.guest_pax
