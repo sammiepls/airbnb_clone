@@ -89,3 +89,6 @@ end
 
 # Gon
 gem 'gon'
+
+# Braintree
+gem 'braintree'
