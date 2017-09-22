@@ -46,8 +46,8 @@
     <div class="col-12">
       <h1 class='text-center'><%= @listing.name %></h1>
       <% if current_user.id == @listing.user_id || current_user.super_admin? %>
-        <%= link_to 'Edit listing', edit_listing_path(@listing) %>
-        <%= link_to 'Delete listing', listing_path(@listing), method: :delete %>
+        <%= link_to 'Edit listing', edit_listing_path(@listing) %> |
+        <%= link_to 'Delete listing', listing_path(@listing), method: :delete %> |
       <% end %>
       <% if !current_user.user? && @listing.verification == false %>
         <%= link_to 'Verify listing', verify_listing_path(@listing), method: :post %>
@@ -64,8 +64,10 @@
          <h2><%= @listing.user.full_name %></h2>
       <% end %>
 
-      <h2>Description</h2>
-      <%= @listing.description %>
+      <div class='my-5'>
+        <h2>Description</h2>
+        <p><%= @listing.description %></p>
+      </div>
       <dl class='col-inline mt-2'>
         <dt>Number of Guests</dt>
         <dd><%= @listing.guest_pax %></dd>
@@ -84,8 +86,11 @@
         <dt>Price per Night</dt>
         <dd>RM<%= number_with_precision(@listing.price_per_night, precision: 2) %></dd>
       </dl>
-      <h3>Tags</h3>
+      <p>*The full address will be shown upon payment of reservation.</p>
+      <% if !@listing.tag_list.empty? %>
+      <h4>Tags</h4>
       <p> <%= raw @listing.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+      <% end %>
     </div>
     <div class="col-4">
       <div class='side-box'>
