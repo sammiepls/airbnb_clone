@@ -17,10 +17,10 @@ class PaymentsController < ApplicationController
 
      if result.success?
        flash[:success] = "Your transaction was successful!"
-       redirect_to :root
+       redirect_to :back
      else
        flash[:failure] = "There was an error in your transaction. Please try again"
-       redirect_to :root
+       redirect_to :back
      end
   end
 end
