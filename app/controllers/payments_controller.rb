@@ -1,12 +1,14 @@
 class PaymentsController < ApplicationController
   def new
+    @reservation = Reservation.find(params[:id])
     @client_token = Braintree::ClientToken.generate
   end
 
   def checkout
+    total_price = params[:checkout_form][:amount]
     nonce_from_the_client = params[:checkout_form][:payment_method_nonce]
      result = Braintree::Transaction.sale(
-      :amount => "10.00", #this is currently hardcoded
+      :amount => total_price,
       :payment_method_nonce => nonce_from_the_client,
       :options => {
          :submit_for_settlement => true
@@ -14,7 +16,6 @@ class PaymentsController < ApplicationController
       )
 
      if result.success?
-       byebug
        flash[:success] = "Your transaction was successful!"
        redirect_to :root
      else
