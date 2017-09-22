@@ -38,9 +38,8 @@
         <h2>Total Price</h2>
         <h5><%= number_with_precision(@reservation.total_price, precision: 2) %></h5>
 
-
           <%= button_tag(class: "btn-primary btn") do %>
-            <%= link_to "Make payment", payment_new_path(@reservation) %>
+            <%= link_to "Make payment", payment_new_path(@reservation), 'data-turbolinks' => false %>
           <% end %>
 
       </div>
