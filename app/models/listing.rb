@@ -13,7 +13,7 @@ class Listing < ApplicationRecord
   validates_presence_of VALIDATABLE_ATTRS
   #validating the presence of everything else
   validates :price_per_night, format: { with: /\A\d+(?:\.\d{0,2})?\z/, message:"has other characters besides numbers and decimal points." }, numericality: true
-  validates :guest_pax, :bedroom_count, :bathroom_count, numericality: true
+  validates :zipcode,:guest_pax, :bedroom_count, :bathroom_count, numericality: true
   validate :check_country
 
   def self.search(term)

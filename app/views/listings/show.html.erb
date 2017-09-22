@@ -66,13 +66,21 @@
 
       <h2>Description</h2>
       <%= @listing.description %>
-      <dl>
+      <dl class='col-inline mt-2'>
         <dt>Number of Guests</dt>
         <dd><%= @listing.guest_pax %></dd>
         <dt>Number of Bathrooms</dt>
         <dd><%= @listing.bathroom_count %></dd>
         <dt>Number of Bedrooms</dt>
         <dd><%= @listing.bedroom_count %></dd>
+        <dt>Country</dt>
+        <dd><%= country_name %></dd>
+        <dt>State</dt>
+        <dd><%= @listing.state %></dd>
+        <dt>City</dt>
+        <dd><%= @listing.city %></dd>
+        <dt>Zipcode</dt>
+        <dd><%= @listing.zipcode %></dd>
         <dt>Price per Night</dt>
         <dd>RM<%= number_with_precision(@listing.price_per_night, precision: 2) %></dd>
       </dl>

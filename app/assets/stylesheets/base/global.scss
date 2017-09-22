@@ -69,3 +69,11 @@ a {
 .error-explanation {
   width: 100%;
 }
+.col-inline {
+  -webkit-columns: 100px 2;
+    -moz-columns: 100px 2;
+    columns: 100px 2;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
