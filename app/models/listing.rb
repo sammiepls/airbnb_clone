@@ -14,12 +14,19 @@ class Listing < ApplicationRecord
   #validating the presence of everything else
   validates :price_per_night, format: { with: /\A\d+(?:\.\d{0,2})?\z/, message:"has other characters besides numbers and decimal points." }, numericality: true
   validates :guest_pax, :bedroom_count, :bathroom_count, numericality: true
+  validate :check_country
 
   def self.search(term)
     if term
       where('name ILIKE ? OR description ILIKE ?', "%#{term}%", "%#{term}%").order('id DESC')
     else
       order('id DESC')
+    end
+  end
+
+  def check_country
+    if !ISO3166::Country.translations.include? country
+      errors.add(:country, "is not a valid country")
     end
   end
 

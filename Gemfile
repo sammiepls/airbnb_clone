@@ -92,3 +92,6 @@ gem 'gon'
 
 # Braintree
 gem 'braintree'
+
+# country
+gem 'country_select'

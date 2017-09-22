@@ -55,6 +55,14 @@ a {
     border: 1px solid rgba(220, 220, 220, 0.99);
     margin-bottom: 1rem;
 }
+.select-field select {
+    width: 100%;
+    padding: .5rem;
+    border-radius: 5px;
+    border: 1px solid rgba(220, 220, 220, 0.99);
+    margin-bottom: 1rem;
+    background: #fff;
+}
 .text-area textarea{
     height: 200px;
 }

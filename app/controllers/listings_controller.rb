@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
   before_action :require_login
   before_action :set_listing, only: [:show, :edit, :update, :destroy, :verify]
-  before_action :set_reservation, only: [:show,:update,:verify]
+  before_action :set_reservation, only: [:create,:show,:update,:verify]
 
   def index
     if params[:tag]
@@ -91,6 +91,6 @@ class ListingsController < ApplicationController
     end
 
     def listing_params
-      params.require(:listing).permit(:user_id,:name,:description,:address,:guest_pax,:bedroom_count,:bathroom_count,:price_per_night,:term,:tag_list,photos: [])
+      params.require(:listing).permit(:user_id,:name,:description,:address,:guest_pax,:bedroom_count,:bathroom_count,:price_per_night,:city,:state,:country,:zipcode,:term,:tag_list,photos: [])
     end
 end
