@@ -58,7 +58,7 @@ class Reservation < ApplicationRecord
 
   def total_price
     price = listing.price_per_night
-    num_dates = (check_in..check_out).to_a.length
+    num_dates = (check_in..check_out).to_a.length - 1
     return price * num_dates
   end
 end

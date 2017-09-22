@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   root "listings#index"
+
+  # Payments
+  get '/reservations/:id/payment' => "payments#new", as: "payment_new"
+  post '/payments/checkout'
+
   get 'tags/:tag', to: 'listings#index', as: :tag
   resources :listings
   get "/users/:id/listings" => "listings#user_listings", as: "user_listings"
   post "/listings/:id" =>"listings#verify", as: "verify_listing"
+
   resources :users
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "sessions", only: [:create]

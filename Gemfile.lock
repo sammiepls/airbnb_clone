@@ -58,6 +58,8 @@ GEM
       autoprefixer-rails (>= 6.0.3)
       popper_js (~> 1.11.1)
       sass (>= 3.4.19)
+    braintree (2.78.0)
+      builder (>= 2.0.0)
     builder (3.2.3)
     byebug (9.1.0)
     carrierwave (1.1.0)
@@ -241,6 +243,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 4.0)
   bootstrap (~> 4.0.0.alpha6)
+  braintree
   byebug
   carrierwave (~> 1.0)
   clearance

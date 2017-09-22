@@ -20,6 +20,9 @@ a {
     color: #fff;
     text-decoration: none!important;
   }
+  .disabled, &:disabled {
+    background: desaturate( $airbnb, 80% );
+  }
 }
 
 .btn-secondary {
@@ -43,6 +46,7 @@ a {
     background: #fff;
     padding: 2rem;
     border-radius: 10px;
+    text-align: center;
 }
 .form-input {
   width: 100%;

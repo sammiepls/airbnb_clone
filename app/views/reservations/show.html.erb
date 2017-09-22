@@ -25,21 +25,23 @@
           <p><%= @reservation.check_out.strftime("%d %B %Y") %> </p>
         </div>
         <div class='col-12'>
-          <h3 class='mt-5'>Total Price</h3>
-          <p><%= @reservation.total_price %>
+          <%= link_to 'Delete Reservation', user_reservation_path(current_user,@reservation), method: :delete %>
         </div>
         <div class='col-12'>
           <h3 class='mt-5'>Listing Description</h3>
-          <p><%= @reservation.listing.description %>
+          <p><%= @reservation.listing.description %></p>
         </div>
       </div>
     </div>
     <div class="col-4">
       <div class="side-box">
-        <h2>Reservation Options</h2>
-          <ul>
-          <li><%= link_to 'Edit listing', edit_user_reservation_path(current_user,@reservation) %></li>
-        </ul>
+        <h2>Total Price</h2>
+        <h5><%= number_with_precision(@reservation.total_price, precision: 2) %></h5>
+
+          <%= button_tag(class: "btn-primary btn") do %>
+            <%= link_to "Make payment", payment_new_path(@reservation), 'data-turbolinks' => false %>
+          <% end %>
+
       </div>
     </div>
   </div>
