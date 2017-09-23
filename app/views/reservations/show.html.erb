@@ -29,8 +29,15 @@
 
         </div>
         <div class='col-12'>
-          <h3 class='mt-5'>Listing Description</h3>
+          <h3 class='mt-4'>Listing Description</h3>
           <p><%= @reservation.listing.description %></p>
+          <% if @reservation.paid %>
+            <h3 class='mt-4'>Address</h3>
+            <p><%= @reservation.listing.address %></p>
+            <p><%= @reservation.listing.city %></p>
+            <p><%= @reservation.listing.state %></p>
+            <p><%= @reservation.listing.country %></p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -38,11 +45,13 @@
       <div class="side-box">
         <h5>Total Price</h5>
         <h2>RM <%= number_with_precision(@reservation.total_price, precision: 2) %></h2>
-
+        <% if @reservation.paid %>
+          <p class='green'><strong><i class='fa fa-check-circle-o'></i> Payment Verified</strong></p>
+        <% else %>
           <%= button_tag(class: "btn-primary btn") do %>
             <%= link_to "Make payment", payment_new_path(@reservation), 'data-turbolinks' => false %>
           <% end %>
-
+        <% end %>
       </div>
     </div>
   </div>

@@ -8,6 +8,9 @@ a {
     color: darken( $airbnb, 30% );
   }
 }
+.green {
+  color: $green;
+}
 .btn-primary {
   background: $airbnb;
   border: 0;
@@ -34,7 +37,7 @@ a {
 #flash {
   text-align: center;
   #flash_success {
-    background: rgba(180, 210, 137, .3);
+    background: rgba($green, .3);
     padding: 1rem;
   }
   #flash_failure,#flash_notice {

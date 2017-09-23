@@ -28,6 +28,7 @@
             <%= form.hidden_field "payment_method_nonce" %>
 
             <%= form.hidden_field :amount, value: number_with_precision(@reservation.total_price, precision: 2)  %>
+            <%= form.hidden_field :reservation_id, value: @reservation.id  %>
 
 
           </div>      <!-- end form -->
@@ -35,8 +36,8 @@
             <div class='side-box'>
               <h2>Total to Pay</h2>
               <h1>RM <%= @reservation.total_price %>
-                <div class="button-container">
-                  <%= form.submit "Purchase", disabled: true, class: "btn btn-primary", id: "submit-payment-btn" %>
+                <div class="button-container mt-3">
+                  <%= form.submit "Make payment", disabled: true, class: "btn btn-primary", id: "submit-payment-btn" %>
                 </div>
                 <div id="paypal-button"></div>
               <% end %>
