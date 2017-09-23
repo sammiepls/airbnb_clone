@@ -43,14 +43,20 @@
 
 <section class="container d-flex align-items-center justify-content-center">
   <div class="row my-5">
-    <div class="col-12">
-      <h1 class='text-center'><%= @listing.name %></h1>
+    <div class="col-12 text-center">
+      <h1><%= @listing.name %></h1>
       <% if current_user.id == @listing.user_id || current_user.super_admin? %>
-        <%= link_to 'Edit listing', edit_listing_path(@listing) %> |
-        <%= link_to 'Delete listing', listing_path(@listing), method: :delete %> |
+        <%= link_to edit_listing_path(@listing) do %>
+           <i class='fa fa-fw fa-pencil'></i> Edit Listing
+        <% end %>
+        <%= link_to listing_path(@listing), method: :delete do %>
+          <i class='fa fa-fw fa-trash'></i> Delete listing
+        <% end %>
       <% end %>
       <% if !current_user.user? && @listing.verification == false %>
-        <%= link_to 'Verify listing', verify_listing_path(@listing), method: :post %>
+         <%= link_to verify_listing_path(@listing), method: :post do %>
+         <i class='fa fa-fw fa-check-circle-o'></i> Verify listing
+         <% end %>
       <% end %>
     </div>
   </div>

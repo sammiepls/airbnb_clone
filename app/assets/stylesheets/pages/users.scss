@@ -56,7 +56,8 @@
     }
 }
 .user-avatar {
-    min-width: 80%;
+    width:280px;
+    height: 280px;
     object-fit: cover;
     box-shadow: $shadow;
 }
