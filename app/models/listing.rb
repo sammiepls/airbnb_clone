@@ -18,10 +18,19 @@ class Listing < ApplicationRecord
 
   def self.search(term)
     if term
-      where('name ILIKE ? OR description ILIKE ?', "%#{term}%", "%#{term}%").order('id DESC')
+      where('name ILIKE ? OR description ILIKE ? OR country ILIKE ? OR city ILIKE ? OR state ILIKE ?', "%#{term}%", "%#{term}%", "%#{self.country_code(term)}%", "%#{term}%", "%#{term}%").order('id DESC')
     else
       order('id DESC')
     end
+  end
+
+  def country_name
+    country = ISO3166::Country[self.country]
+    country.translations[I18n.locale.to_s] || country.name
+  end
+
+  def self.country_code(term)
+    ISO3166::Country.translations.find { |key, value| term.include? value }[0]
   end
 
   def check_country
