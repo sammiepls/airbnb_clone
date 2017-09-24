@@ -4,6 +4,7 @@ class PaymentsController < ApplicationController
     @client_token = Braintree::ClientToken.generate
   end
 
+
   def checkout
     @reservation = Reservation.find(params[:checkout_form][:reservation_id])
     total_price = params[:checkout_form][:amount]
@@ -18,7 +19,7 @@ class PaymentsController < ApplicationController
 
      if result.success?
        flash.now[:success] = "Your transaction was successful!"
-       @reservation.update(paid:true)
+       @reservation.update_attribute(:paid,true)
        render template: "/reservations/show"
      else
        flash[:failure] = "There was an error in your transaction. Please try again"
