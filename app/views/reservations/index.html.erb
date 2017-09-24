@@ -3,39 +3,77 @@
     <div class="col-12">
       <h1>Your reservations</h1>
       <% if @reservations.count != 0 %>
-      <% @reservations.each do |reservation| %>
-        <section class='reservation-wrapper my-5'>
-          <div class='reservation-photo-wrapper'>
-            <% if reservation.listing.photos.first %>
-          <%= image_tag reservation.listing.photos.first, class: "reservation-photo d-block img-fluid"  %>
-          <% else %>
-          <%= image_tag 'placeholder.png', class: "reservation-photo d-block img-fluid"  %>
+        <% if @reservations.where(paid:true).count > 0 %>
+          <h2>Confirmed reservations</h2>
+          <% @reservations.where(paid:true).each do |reservation| %>
+            <section class='reservation-wrapper my-5'>
+              <div class='reservation-photo-wrapper'>
+                <% if reservation.listing.photos.first %>
+              <%= image_tag reservation.listing.photos.first, class: "reservation-photo d-block img-fluid"  %>
+              <% else %>
+              <%= image_tag 'placeholder.png', class: "reservation-photo d-block img-fluid"  %>
+              <% end %>
+                <div class='reservation-title-wrapper'>
+                  <h1><%= reservation.listing.name %></h1>
+                </div>
+              </div>
+
+              <div class="reservation-details-wrapper pt-3 px-4 pb-1">
+                <div class='row'>
+                  <div class="col-4">
+                    <h3>Check-in date</h3>
+                    <p><%= reservation.check_in.strftime("%d %B %Y") %></p>
+                  </div>
+                  <div class="col-4">
+                    <h3>Check-out date</h3>
+                    <p><%= reservation.check_out.strftime("%d %B %Y") %></p>
+                  </div>
+                  <div class="col-4 d-flex justify-content-md-end">
+                    <%= button_tag(class: "btn-primary btn") do %>
+                      <%= link_to "View reservation", user_reservation_path(current_user,reservation) %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+            </section>
           <% end %>
-            <div class='reservation-title-wrapper'>
-              <h1><%= reservation.listing.name %></h1>
-            </div>
-          </div>
-          
-          <div class="reservation-details-wrapper pt-3 px-4 pb-1">
-            <div class='row'>
-              <div class="col-4">
-                <h3>Check-in date</h3>
-                <p><%= reservation.check_in.strftime("%d %B %Y") %></p>
-              </div>
-              <div class="col-4">
-                <h3>Check-out date</h3>
-                <p><%= reservation.check_out.strftime("%d %B %Y") %></p>
-              </div>
-              <div class="col-4 d-flex justify-content-md-end">
-                <%= button_tag(class: "btn-primary btn") do %>
-                  <%= link_to "View reservation", user_reservation_path(current_user,reservation) %>
-                <% end %>
+
+        <% elsif @reservations.where(paid:false).count > 0 %>
+          <% @reservations.where(paid:false).each do |reservation| %>
+          <section class='reservation-wrapper my-5'>
+            <div class='reservation-photo-wrapper'>
+              <% if reservation.listing.photos.first %>
+            <%= image_tag reservation.listing.photos.first, class: "reservation-photo d-block img-fluid"  %>
+            <% else %>
+            <%= image_tag 'placeholder.png', class: "reservation-photo d-block img-fluid"  %>
+            <% end %>
+              <div class='reservation-title-wrapper'>
+                <h1><%= reservation.listing.name %></h1>
               </div>
             </div>
-          </div>
-          
-        </section>
-      <% end %>
+
+            <div class="reservation-details-wrapper pt-3 px-4 pb-1">
+              <div class='row'>
+                <div class="col-4">
+                  <h3>Check-in date</h3>
+                  <p><%= reservation.check_in.strftime("%d %B %Y") %></p>
+                </div>
+                <div class="col-4">
+                  <h3>Check-out date</h3>
+                  <p><%= reservation.check_out.strftime("%d %B %Y") %></p>
+                </div>
+                <div class="col-4 d-flex justify-content-md-end">
+                  <%= button_tag(class: "btn-primary btn") do %>
+                    <%= link_to "View reservation", user_reservation_path(current_user,reservation) %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+          </section>
+        <% end %>
+        <% end %>
       <% else %>
         <p> You have not made any reservations. </p>
       <% end %>

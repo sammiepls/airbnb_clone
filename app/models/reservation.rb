@@ -41,7 +41,7 @@ class Reservation < ApplicationRecord
   end
 
   def check_overlapping_dates
-    if check_in != nil && check_out != nil && Reservation.where(listing_id:listing.id).count > 1
+    if check_in != nil && check_out != nil 
       Reservation.where(listing_id:listing.id).each do |reservation|
         if overlap?(self,reservation)
           return errors.add(:overlapping_dates, message: "These dates are not available for booking")

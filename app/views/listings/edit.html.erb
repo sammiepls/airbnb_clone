@@ -5,14 +5,14 @@
       <%= form_for @listing do |form| %>
       <%= render partial: '/listings/form', object: form %>
 
-      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.hidden_field :user_id, value: @listing.user_id %>
 
       <div class="submit-field text-center my-3">
         <%= form.submit class: 'btn btn-primary' %>
       </div>
 
     <% end %>
-    
+
     </div>
   </div>
 </main>
