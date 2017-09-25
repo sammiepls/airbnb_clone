@@ -21,9 +21,12 @@ class PaymentsController < ApplicationController
        flash[:success] = "Your transaction was successful!"
        @reservation.update_attribute(:paid,true)
        # Send booking email to user
-       ReservationMailer.reservation_confirmation_email(current_user, @reservation).deliver
+      #  ReservationMailer.reservation_confirmation_email(current_user, @reservation).deliver_now
 
-      #  render template: "/reservations/show"
+      # Active Jobs to send email
+      ReservationJob.perform_later(current_user,@reservation)
+
+      #  render template: "/reservations/show" (this wouldn't change the payment checkout url)
        redirect_to user_reservation_url(current_user,@reservation)
 
      else
