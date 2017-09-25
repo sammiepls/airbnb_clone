@@ -20,6 +20,9 @@ class ReservationsController < ApplicationController
   def show
   end
 
+  def update
+  end
+
   def destroy
     @reservation.destroy
     flash[:success] = 'Listing was successfully destroyed'
@@ -28,7 +31,7 @@ class ReservationsController < ApplicationController
 
   private
   def reservation_params
-    params.require(:reservation).permit(:user_id,:listing_id,:guest_pax,:check_in,:check_out)
+    params.require(:reservation).permit(:user_id,:listing_id,:guest_pax,:check_in,:check_out,:paid)
   end
 
   def set_reservation

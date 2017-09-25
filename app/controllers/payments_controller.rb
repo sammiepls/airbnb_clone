@@ -4,7 +4,9 @@ class PaymentsController < ApplicationController
     @client_token = Braintree::ClientToken.generate
   end
 
+
   def checkout
+    @reservation = Reservation.find(params[:checkout_form][:reservation_id])
     total_price = params[:checkout_form][:amount]
     nonce_from_the_client = params[:checkout_form][:payment_method_nonce]
      result = Braintree::Transaction.sale(
@@ -16,11 +18,12 @@ class PaymentsController < ApplicationController
       )
 
      if result.success?
-       flash[:success] = "Your transaction was successful!"
-       redirect_to :root
+       flash.now[:success] = "Your transaction was successful!"
+       @reservation.update_attribute(:paid,true)
+       render template: "/reservations/show"
      else
        flash[:failure] = "There was an error in your transaction. Please try again"
-       redirect_to :root
+       redirect_to :back
      end
   end
 end

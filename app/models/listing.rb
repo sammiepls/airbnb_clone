@@ -13,13 +13,29 @@ class Listing < ApplicationRecord
   validates_presence_of VALIDATABLE_ATTRS
   #validating the presence of everything else
   validates :price_per_night, format: { with: /\A\d+(?:\.\d{0,2})?\z/, message:"has other characters besides numbers and decimal points." }, numericality: true
-  validates :guest_pax, :bedroom_count, :bathroom_count, numericality: true
+  validates :zipcode,:guest_pax, :bedroom_count, :bathroom_count, numericality: true
+  validate :check_country
 
   def self.search(term)
     if term
-      where('name ILIKE ? OR description ILIKE ?', "%#{term}%", "%#{term}%").order('id DESC')
+      where('name ILIKE ? OR description ILIKE ? OR country ILIKE ? OR city ILIKE ? OR state ILIKE ?', "%#{term}%", "%#{term}%", "%#{self.country_code(term)}%", "%#{term}%", "%#{term}%").order('id DESC')
     else
       order('id DESC')
+    end
+  end
+
+  def country_name
+    country = ISO3166::Country[self.country]
+    country.translations[I18n.locale.to_s] || country.name
+  end
+
+  def self.country_code(term)
+    ISO3166::Country.translations.find { |key, value| term.include? value }[0]
+  end
+
+  def check_country
+    if !ISO3166::Country.translations.include? country
+      errors.add(:country, "is not a valid country")
     end
   end
 

@@ -43,14 +43,20 @@
 
 <section class="container d-flex align-items-center justify-content-center">
   <div class="row my-5">
-    <div class="col-12">
-      <h1 class='text-center'><%= @listing.name %></h1>
+    <div class="col-12 text-center">
+      <h1><%= @listing.name %></h1>
       <% if current_user.id == @listing.user_id || current_user.super_admin? %>
-        <%= link_to 'Edit listing', edit_listing_path(@listing) %>
-        <%= link_to 'Delete listing', listing_path(@listing), method: :delete %>
+        <%= link_to edit_listing_path(@listing) do %>
+           <i class='fa fa-fw fa-pencil'></i> Edit Listing
+        <% end %>
+        <%= link_to listing_path(@listing), method: :delete do %>
+          <i class='fa fa-fw fa-trash'></i> Delete listing
+        <% end %>
       <% end %>
       <% if !current_user.user? && @listing.verification == false %>
-        <%= link_to 'Verify listing', verify_listing_path(@listing), method: :post %>
+         <%= link_to verify_listing_path(@listing), method: :post do %>
+         <i class='fa fa-fw fa-check-circle-o'></i> Verify listing
+         <% end %>
       <% end %>
     </div>
   </div>
@@ -64,20 +70,33 @@
          <h2><%= @listing.user.full_name %></h2>
       <% end %>
 
-      <h2>Description</h2>
-      <%= @listing.description %>
-      <dl>
+      <div class='my-5'>
+        <h2>Description</h2>
+        <p><%= @listing.description %></p>
+      </div>
+      <dl class='col-inline mt-2'>
         <dt>Number of Guests</dt>
         <dd><%= @listing.guest_pax %></dd>
         <dt>Number of Bathrooms</dt>
         <dd><%= @listing.bathroom_count %></dd>
         <dt>Number of Bedrooms</dt>
         <dd><%= @listing.bedroom_count %></dd>
+        <dt>Country</dt>
+        <dd><%= @listing.country_name %></dd>
+        <dt>State</dt>
+        <dd><%= @listing.state %></dd>
+        <dt>City</dt>
+        <dd><%= @listing.city %></dd>
+        <dt>Zipcode</dt>
+        <dd><%= @listing.zipcode %></dd>
         <dt>Price per Night</dt>
         <dd>RM<%= number_with_precision(@listing.price_per_night, precision: 2) %></dd>
       </dl>
-      <h3>Tags</h3>
+      <p>*The full address will be shown upon payment of reservation.</p>
+      <% if !@listing.tag_list.empty? %>
+      <h4>Tags</h4>
       <p> <%= raw @listing.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+      <% end %>
     </div>
     <div class="col-4">
       <div class='side-box'>

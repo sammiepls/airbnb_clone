@@ -8,6 +8,9 @@ a {
     color: darken( $airbnb, 30% );
   }
 }
+.green {
+  color: $green;
+}
 .btn-primary {
   background: $airbnb;
   border: 0;
@@ -34,7 +37,7 @@ a {
 #flash {
   text-align: center;
   #flash_success {
-    background: rgba(180, 210, 137, .3);
+    background: rgba($green, .3);
     padding: 1rem;
   }
   #flash_failure,#flash_notice {
@@ -55,9 +58,25 @@ a {
     border: 1px solid rgba(220, 220, 220, 0.99);
     margin-bottom: 1rem;
 }
+.select-field select {
+    width: 100%;
+    padding: .5rem;
+    border-radius: 5px;
+    border: 1px solid rgba(220, 220, 220, 0.99);
+    margin-bottom: 1rem;
+    background: #fff;
+}
 .text-area textarea{
     height: 200px;
 }
 .error-explanation {
   width: 100%;
+}
+.col-inline {
+  -webkit-columns: 100px 2;
+    -moz-columns: 100px 2;
+    columns: 100px 2;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
 }

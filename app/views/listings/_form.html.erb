@@ -11,6 +11,22 @@
     <%= form.label :address %>
     <%= form.text_field :address, type: 'text', placeholder: "Address",class:"form-input" %>
   </div>
+  <div class="text-field col-3">
+    <%= form.label :city %>
+    <%= form.text_field :city, type: 'text', placeholder: "City",class:"form-input" %>
+  </div>
+  <div class="text-field col-3">
+    <%= form.label :state %>
+    <%= form.text_field :state, type: 'text', placeholder: "State",class:"form-input" %>
+  </div>
+  <div class="text-field col-3">
+    <%= form.label :zipcode %>
+    <%= form.text_field :zipcode, type: 'text', placeholder: "Zipcode",class:"form-input" %>
+  </div>
+  <div class="select-field col-3">
+    <%= form.label :country %>
+    <%= form.country_select :country, class:"form-input" %>
+  </div>
   <div class="number-field col-4">
     <%= form.label :guest_pax %>
     <%= form.number_field :guest_pax, min: 1, max: 20, step: :any, placeholder: 1,class:"form-input"  %>
