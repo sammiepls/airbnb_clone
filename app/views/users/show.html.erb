@@ -4,7 +4,7 @@
       <% if @user.avatar? %>
         <%= image_tag(@user.avatar.thumb.url, class: "user-avatar rounded-circle")  %>
       <% else %>
-        <%= image_tag('anonymous.jpg', class: "user-avatar rounded-circle")  %>
+        <%= image_tag('https://s3-ap-southeast-1.amazonaws.com/sammiepls-airbnb-clone/anonymous.jpg', class: "user-avatar rounded-circle")  %>
       <% end %>
     </div>
     <div class="col-8">

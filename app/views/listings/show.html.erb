@@ -19,7 +19,7 @@
     <% if @listing.photos.first %>
       <%= image_tag @listing.photos.first, class: "listing-photo d-block img-fluid"  %>
     <% else %>
-    <%= image_tag 'placeholder.png', class: "listing-photo d-block img-fluid"  %>
+    <%= image_tag 'https://s3-ap-southeast-1.amazonaws.com/sammiepls-airbnb-clone/placeholder.png', class: "listing-photo d-block img-fluid"  %>
     <% end %>
   </div>
   <% if @listing.photos.count > 1 %>

@@ -1,5 +1,5 @@
 .sign-in,.sign-up {
-  @include hero-background(hero);
+  @include hero-background("https://s3-ap-southeast-1.amazonaws.com/sammiepls-airbnb-clone/hero.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
