@@ -18,7 +18,11 @@ class Listing < ApplicationRecord
 
   def self.search(term)
     if term
-      where('name ILIKE ? OR description ILIKE ? OR country ILIKE ? OR city ILIKE ? OR state ILIKE ?', "%#{term}%", "%#{term}%", "%#{self.country_code(term)}%", "%#{term}%", "%#{term}%").order('id DESC')
+      if self.country_code(term).nil?
+        where('name ILIKE ? OR description ILIKE ? OR city ILIKE ? OR state ILIKE ?', "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%").order('id DESC')
+      else
+        where('name ILIKE ? OR description ILIKE ? OR country ILIKE ? OR city ILIKE ? OR state ILIKE ?', "%#{term}%", "%#{term}%", "%#{self.country_code(term)}%", "%#{term}%", "%#{term}%").order('id DESC')
+      end
     else
       order('id DESC')
     end
@@ -30,7 +34,12 @@ class Listing < ApplicationRecord
   end
 
   def self.country_code(term)
-    ISO3166::Country.translations.find { |key, value| term.include? value }[0]
+    result = ISO3166::Country.translations.find { |key, value| term.include? value }
+    if result.nil?
+      nil
+    else
+      result[0]
+    end
   end
 
   def check_country
