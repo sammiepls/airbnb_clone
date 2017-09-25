@@ -95,3 +95,6 @@ gem 'braintree'
 
 # country
 gem 'country_select'
+
+# Letter Opener
+gem "letter_opener", :group => :development

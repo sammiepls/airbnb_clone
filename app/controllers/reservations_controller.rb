@@ -25,7 +25,7 @@ class ReservationsController < ApplicationController
 
   def destroy
     @reservation.destroy
-    flash[:success] = 'Listing was successfully destroyed'
+    flash[:success] = 'Reservation was successfully deleted'
     redirect_to user_reservations_path
   end
 

@@ -35,7 +35,7 @@
           <div class='col-4 my-5'>
             <div class='side-box'>
               <h2>Total to Pay</h2>
-              <h1>RM <%= @reservation.total_price %>
+              <h1>RM <%= number_with_precision(@reservation.total_price,precision: 2) %>
                 <div class="button-container mt-3">
                   <%= form.submit "Make payment", disabled: true, class: "btn btn-primary", id: "submit-payment-btn" %>
                 </div>

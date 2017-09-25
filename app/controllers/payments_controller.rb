@@ -18,9 +18,14 @@ class PaymentsController < ApplicationController
       )
 
      if result.success?
-       flash.now[:success] = "Your transaction was successful!"
+       flash[:success] = "Your transaction was successful!"
        @reservation.update_attribute(:paid,true)
-       render template: "/reservations/show"
+       # Send booking email to user
+       ReservationMailer.reservation_confirmation_email(current_user, @reservation).deliver
+
+      #  render template: "/reservations/show"
+       redirect_to user_reservation_url(current_user,@reservation)
+
      else
        flash[:failure] = "There was an error in your transaction. Please try again"
        redirect_to :back
