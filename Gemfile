@@ -101,3 +101,6 @@ gem "letter_opener", :group => :development
 
 # Sidekiq
 gem 'sidekiq'
+
+# Rails 12 Factor
+gem 'rails_12factor', group: :production
