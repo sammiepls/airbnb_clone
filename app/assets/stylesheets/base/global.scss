@@ -8,6 +8,9 @@ a {
     color: darken( $airbnb, 30% );
   }
 }
+.fa-search {
+  cursor: pointer;
+}
 .green {
   color: $green;
 }

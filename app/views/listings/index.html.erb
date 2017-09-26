@@ -3,12 +3,24 @@
     <div class="row">
       <div class="col-12">
       <h1 class='text-center'>Where to?</h1>
-        <%= form_tag(listings_path, method: :get, class:'form-inline') do %>
-          <%= text_field_tag :term, params[:term] %>
-          <%= button_tag(name:nil,type: "submit", class: "btn-icon") do %>
-            <i class="fa fa-search fa-3x"></i>
-          <% end %>
+      <%= form_for :listing, url: listings_path, method: :get do |f| %>
+        <%= f.text_field :name, placeholder:"Search by name" %>
+        <%= f.text_field :description, placeholder:"Search by keyword" %>
+        <%= f.text_field :guest_pax, placeholder:"Number of guests" %>
+        <%= f.country_select :country, class:"form-input", include_blank:"Select a country" %>
+        <%= f.text_field :state, placeholder:"Search by state" %>
+        <%= f.text_field :city, placeholder:"Search by city" %>
+        <%= button_tag(name:nil,type: "submit", class: "btn-icon") do %>
+          <i class="fa fa-search fa-3x"></i>
         <% end %>
+      <% end %>
+      <!-- Old Search -->
+        <%#= form_tag(listings_path, method: :get, class:'form-inline') do %>
+          <%#= text_field_tag :term, params[:term] %>
+          <%#= button_tag(name:nil,type: "submit", class: "btn-icon") do %>
+            <!-- <i class="fa fa-search fa-3x"></i> -->
+          <%# end %>
+        <%# end %>
       </div>
     </div>
   </div>
