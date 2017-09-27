@@ -9,10 +9,11 @@ class Listing < ApplicationRecord
   scope :verification, -> (verification) { where verification: true }
   scope :guest_pax_has, -> (guest_pax) { where guest_pax: guest_pax }
   scope :country_has, -> (country) { where country: country }
-  scope :name_has, -> (name) { where("name like ?", "%#{name}%")}
+  scope :name_has, -> (name) { where("name ILIKE ?", "%#{name}%")}
   scope :description_has, -> (description) {where("description like ?", "%#{description}%")}
-  scope :city_has, -> (city) {where("city like ?", "%#{city}%")}
-  scope :state_has, -> (state) {where("state like ?", "%#{state}%")}
+  scope :city_has, -> (city) {where("city ILIKE ?", "%#{city}%")}
+  scope :state_has, -> (state) {where("state ILIKE ?", "%#{state}%")}
+  scope :price_per_night_has, -> (price_per_night) { where("price_per_night <= ?", "#{price_per_night}")}
   # scope :price -> (low, high) { where("price < ? AND price > ?", high, low)}
 
   # Validation
@@ -25,7 +26,7 @@ class Listing < ApplicationRecord
   validates :zipcode,:guest_pax, :bedroom_count, :bathroom_count, numericality: true
   validate :check_country
 
-  def self.search(params)
+  def self.filter(params)
     @listings = Listing.verification
     params.each do |key, value|
       unless value.blank?
@@ -33,7 +34,7 @@ class Listing < ApplicationRecord
       end
     end
     @listings
-    #
+    # My unrefactored method
     # @listings = @listings.guest_pax(params[:guest_pax]) unless params[:guest_pax].blank?
     # @listings = @listings.name(params[:name]) unless params[:name].blank?
     # @listings = @listings.description(params[:description]) unless params[:description].blank?
@@ -41,17 +42,19 @@ class Listing < ApplicationRecord
     # @listings = @listings.state(params[:state]) unless params[:state].blank?
     # @listings = @listings.country(params[:country]) unless params[:country].blank?
   end
-  # def self.search(term)
-  #   if term
-  #     if self.country_code(term).nil?
-  #       where('name ILIKE ? OR description ILIKE ? OR city ILIKE ? OR state ILIKE ?', "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%").order('id DESC')
-  #     else
-  #       where('name ILIKE ? OR description ILIKE ? OR country ILIKE ? OR city ILIKE ? OR state ILIKE ?', "%#{term}%", "%#{term}%", "%#{self.country_code(term)}%", "%#{term}%", "%#{term}%").order('id DESC')
-  #     end
-  #   else
-  #     order('id DESC')
-  #   end
-  # end
+
+  # Old Search
+  def self.search(term)
+    if term
+      if self.country_code(term).nil?
+        where('name ILIKE ? OR description ILIKE ? OR city ILIKE ? OR state ILIKE ?', "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%").order('id DESC')
+      else
+        where('name ILIKE ? OR description ILIKE ? OR country ILIKE ? OR city ILIKE ? OR state ILIKE ?', "%#{term}%", "%#{term}%", "%#{self.country_code(term)}%", "%#{term}%", "%#{term}%").order('id DESC')
+      end
+    else
+      order('id DESC')
+    end
+  end
 
   def country_name
     country = ISO3166::Country[self.country]
@@ -71,18 +74,6 @@ class Listing < ApplicationRecord
     if !ISO3166::Country.translations.include? country
       errors.add(:country, "is not a valid country")
     end
-  end
-  private
-  def filtering_params(params)
-    params.slice(:verification, :country, :city, :state, :name, :description)
-  end
-
-  def filter(filtering_params)
-      results = self.where(nil) # create an anonymous scope
-      filtering_params.each do |key, value|
-        results = results.public_send(key, value) if value.present?
-      end
-      results
   end
 
 end

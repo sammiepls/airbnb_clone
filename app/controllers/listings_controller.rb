@@ -4,10 +4,13 @@ class ListingsController < ApplicationController
   before_action :set_reservation, only: [:create,:show,:update,:verify]
 
   def index
+    @all_listings = Listing.verification
     if params[:tag]
-      @listings = Listing.tagged_with(params[:tag])
+      @listings = Listing.verification.tagged_with(params[:tag])
     elsif params[:listing]
-      @listings = Listing.search(params[:listing])
+      @listings = Listing.filter(params[:listing])
+    elsif params[:term]
+      @listings = Listing.verification.search(params[:term])
     elsif current_user.user?
       @listings = Listing.verification
     else
