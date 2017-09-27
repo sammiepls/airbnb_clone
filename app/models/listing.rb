@@ -5,6 +5,16 @@ class Listing < ApplicationRecord
   has_many :reservations, dependent: :destroy
   # Taggable
   acts_as_taggable_on :tags
+  # Search Scope
+  scope :verification, -> (verification) { where verification: true }
+  scope :guest_pax_has, -> (guest_pax) { where guest_pax: guest_pax }
+  scope :country_has, -> (country) { where country: country }
+  scope :name_has, -> (name) { where("name ILIKE ?", "%#{name}%")}
+  scope :description_has, -> (description) {where("description like ?", "%#{description}%")}
+  scope :city_has, -> (city) {where("city ILIKE ?", "%#{city}%")}
+  scope :state_has, -> (state) {where("state ILIKE ?", "%#{state}%")}
+  scope :price_per_night_has, -> (price_per_night) { where("price_per_night <= ?", "#{price_per_night}")}
+  # scope :price -> (low, high) { where("price < ? AND price > ?", high, low)}
 
   # Validation
   NON_VALIDATABLE_ATTRS = ["id", "created_at", "updated_at", "user", "photos", "verification"]
@@ -16,6 +26,24 @@ class Listing < ApplicationRecord
   validates :zipcode,:guest_pax, :bedroom_count, :bathroom_count, numericality: true
   validate :check_country
 
+  def self.filter(params)
+    @listings = Listing.verification
+    params.each do |key, value|
+      unless value.blank?
+        @listings = @listings.verification.send(key.to_s + "_has",value)
+      end
+    end
+    @listings
+    # My unrefactored method
+    # @listings = @listings.guest_pax(params[:guest_pax]) unless params[:guest_pax].blank?
+    # @listings = @listings.name(params[:name]) unless params[:name].blank?
+    # @listings = @listings.description(params[:description]) unless params[:description].blank?
+    # @listings = @listings.city(params[:city]) unless params[:city].blank?
+    # @listings = @listings.state(params[:state]) unless params[:state].blank?
+    # @listings = @listings.country(params[:country]) unless params[:country].blank?
+  end
+
+  # Old Search
   def self.search(term)
     if term
       if self.country_code(term).nil?

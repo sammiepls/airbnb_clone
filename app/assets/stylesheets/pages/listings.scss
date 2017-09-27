@@ -1,5 +1,5 @@
 .listing-hero {
-   @include hero-background(listing_hero);
+   @include hero-background("https://s3-ap-southeast-1.amazonaws.com/sammiepls-airbnb-clone/listing_hero.jpg");
    background-size: cover;
    background-position: center;
    height: 40vh;
@@ -31,6 +31,8 @@
   border: 0;
   box-shadow: $shadow;
   height: 100%;
+  margin-left: 0!important;
+  margin-right: 0!important;
 }
 .new_listing {
   label {

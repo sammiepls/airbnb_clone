@@ -4,16 +4,33 @@ class ListingsController < ApplicationController
   before_action :set_reservation, only: [:create,:show,:update,:verify]
 
   def index
+    @all_listings = Listing.verification
     if params[:tag]
-      @listings = Listing.tagged_with(params[:tag]).order('updated_at DESC').paginate(:page => params[:page], :per_page => 12)
+      @listings = Listing.verification.tagged_with(params[:tag])
+    elsif params[:listing]
+      @listings = Listing.filter(params[:listing])
     elsif params[:term]
-      @listings = Listing.search(params[:term]).order('updated_at DESC').paginate(:page => params[:page], :per_page => 12)
+      @listings = Listing.verification.search(params[:term])
     elsif current_user.user?
-      @listings = Listing.where(verification:true).order('updated_at DESC').paginate(:page => params[:page], :per_page => 12)
+      @listings = Listing.verification
     else
-      @listings = Listing.order('updated_at DESC').paginate(:page => params[:page], :per_page => 12)
+      @listings = Listing.all
     end
+    @listings = @listings.order('updated_at DESC').paginate(:page => params[:page], :per_page => 12)
+
+
   end
+  # def index
+  #   if params[:tag]
+  #     @listings = Listing.tagged_with(params[:tag]).order('updated_at DESC').paginate(:page => params[:page], :per_page => 12)
+  #   elsif params[:term]
+  #     @listings = Listing.search(params[:term]).order('updated_at DESC').paginate(:page => params[:page], :per_page => 12)
+  #   elsif current_user.user?
+  #     @listings = Listing.where(verification:true).order('updated_at DESC').paginate(:page => params[:page], :per_page => 12)
+  #   else
+  #     @listings = Listing.order('updated_at DESC').paginate(:page => params[:page], :per_page => 12)
+  #   end
+  # end
 
   def show
     reservations = Reservation.where(listing_id: params[:id]).map do |x|
