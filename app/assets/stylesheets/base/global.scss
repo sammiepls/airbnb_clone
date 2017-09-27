@@ -37,6 +37,14 @@ a {
     border-color: #fff;
     margin-left: 20px;
 }
+.btn-filter {
+    background: rgba( $airbnb, .7 );
+    color: #fff;
+    width: 100%;
+    border-radius: 10px;
+    padding: .3rem;
+    border: 0;
+}
 #flash {
   text-align: center;
   #flash_success {
@@ -60,6 +68,9 @@ a {
     border-radius: 5px;
     border: 1px solid rgba(220, 220, 220, 0.99);
     margin-bottom: 1rem;
+}
+.form-slider {
+  width: 100%;
 }
 .select-field select {
     width: 100%;

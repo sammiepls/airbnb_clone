@@ -20,22 +20,12 @@
   <div class="row my-5">
     <div class="col-12">
       <h1>Listings</h1>
-      <%= form_for :listing, url: listings_path, method: :get do |f| %>
-        <%= f.text_field :name, placeholder:"Search by name" %>
-        <%= f.text_field :description, placeholder:"Search by keyword" %>
-        <%= f.text_field :guest_pax, placeholder:"Number of guests" %>
-        <%= f.country_select :country, class:"form-input", include_blank:"Select a country" %>
-        <%= f.text_field :state, placeholder:"Search by state" %>
-        <%= f.text_field :city, placeholder:"Search by city" %>
-        <%= f.range_field :price_per_night,type:"range", :min=>0, :max=>@listings.maximum("price_per_night"), :id=>"priceSlider", :step=> 1, :oninput=>"priceOutput.value = priceSlider.value",:value=> @all_listings.maximum("price_per_night") %>
-        RM <output name="price-slider-output" id="priceOutput"></output>
-
-        <%= button_tag(name:nil,type: "submit", class: "btn-icon") do %>
-          <i class="fa fa-search fa-3x"></i>
-
-
-        <% end %>
-      <% end %>
+      <a data-toggle="collapse" href="#search_filter" aria-expanded="false" aria-controls="search_filter">
+    Filter
+      </a>
+      <div class="collapse" id='search_filter'>
+      <%= render partial: '/listings/search_filter' %>
+    </div>
     </div>
 
     <div class='card-deck'>
