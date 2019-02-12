@@ -273,7 +273,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 4.0)
-  bootstrap (~> 4.0.0.alpha6)
+  bootstrap (~> 4.1.2)
   braintree
   byebug
   carrierwave (~> 1.0)
