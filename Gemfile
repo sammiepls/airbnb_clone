@@ -58,7 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "clearance"
 
 # Bootstrap
-gem 'bootstrap'
+gem "bootstrap", ">= 4.1.2"
 
 # Figaro
 gem "figaro"
